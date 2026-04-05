@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Atendimento — Grupo Diagonal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary:#1B3A2D; --gold:#2D8A4E; --gold-light:#4CAF70; --gold-pale:#E8F5ED;
+    --cream:#F5FAF7; --slate:#4A5568; --muted:#7A9A8A; --white:#FFFFFF;
+    --mcmv:#1B5E38; --border:rgba(45,138,78,0.18);
+    --shadow:0 4px 32px rgba(27,58,45,0.07); --shadow-lg:0 12px 48px rgba(27,58,45,0.13);
+    --red:#C0392B; --green:#27AE60; --blue:#2980B9; --orange:#E67E22;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--primary);overflow-x:hidden;scroll-behavior:smooth;}
+
+  /* ── SEARCH ── */
+  #so{display:none;position:fixed;inset:0;background:rgba(26,43,60,0.88);z-index:999;align-items:flex-start;justify-content:center;padding-top:80px;}
+  #so.open{display:flex;}
+  .sb{background:var(--white);border-radius:16px;width:100%;max-width:680px;box-shadow:var(--shadow-lg);overflow:hidden;}
+  .siw{display:flex;align-items:center;gap:.75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border);}
+  .siw input{flex:1;border:none;outline:none;font-size:1.05rem;font-family:'DM Sans',sans-serif;color:var(--primary);}
+  .sc{background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);}
+  #sr{max-height:420px;overflow-y:auto;}
+  .sres{padding:.9rem 1.25rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+  .sres:hover{background:var(--gold-pale);}
+  .sres h4{font-size:.88rem;font-weight:600;margin-bottom:.18rem;}
+  .sres p{font-size:.76rem;color:var(--slate);}
+  .sres mark{background:rgba(76,175,112,.3);border-radius:2px;padding:0 2px;}
+  .ssec{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);}
+  .sempty{padding:2rem;text-align:center;color:var(--muted);font-size:.88rem;}
+
+  /* ── HEADER ── */
+  header{background:var(--primary);position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);}
+  .hi{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;}
+  .lg{display:flex;align-items:center;gap:1.2rem;}
+  .lb{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);}
+  .lt strong{display:block;font-size:1rem;font-weight:600;color:var(--white);}
+  .lt span{font-size:.7rem;color:var(--gold-light);letter-spacing:.08em;text-transform:uppercase;}
+  nav{display:flex;gap:.2rem;flex-wrap:wrap;}
+  nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.76rem;font-weight:500;padding:.35rem .65rem;border-radius:6px;transition:all .2s;white-space:nowrap;}
+  nav a:hover,nav a.active{color:#A8EFC8;background:rgba(76,175,112,.12);}
+  .hr{display:flex;align-items:center;gap:.6rem;}
+  .sbtn{background:rgba(76,175,112,.15);border:1px solid rgba(76,175,112,.3);color:#A8EFC8;padding:.35rem .9rem;border-radius:8px;cursor:pointer;font-size:.78rem;display:flex;align-items:center;gap:.4rem;transition:all .2s;white-space:nowrap;}
+  .sbtn:hover{background:rgba(76,175,112,.25);}
+  .bp{padding:.22rem .65rem;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+  .pmcmv{background:rgba(27,94,56,.5);color:#A8EFC8;border:1px solid rgba(27,94,56,.7);}
+
+  /* ── HERO ── */
+  .hero{background:linear-gradient(135deg,#1B3A2D 0%,#234D38 50%,#1B3A2D 100%);padding:3rem 2rem 2.8rem;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%234CAF70' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+  .hero-in{max-width:1280px;margin:0 auto;position:relative;}
+  .htag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(76,175,112,.15);border:1px solid rgba(76,175,112,.3);color:#A8EFC8;padding:.35rem 1rem;border-radius:20px;font-size:.73rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.8rem;max-width:680px;}
+  .hero h1 em{font-style:normal;color:#A8EFC8;}
+  .hero p{color:rgba(255,255,255,.65);font-size:.95rem;max-width:560px;line-height:1.7;margin-bottom:1.75rem;}
+  .hstats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+  .snum{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#A8EFC8;display:block;}
+  .slbl{font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;}
+
+  /* ── LAYOUT ── */
+  .sec{max-width:1280px;margin:0 auto;padding:2.5rem 2rem;}
+  .sh{margin-bottom:1.75rem;}
+  .sh h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+  .sh p{color:var(--slate);font-size:.92rem;margin-top:.4rem;}
+  .gbar{width:40px;height:3px;background:var(--gold);margin:.5rem 0 .7rem;border-radius:2px;}
+  .bgw{background:var(--white);padding:.5rem 0;}
+
+  /* ── TABS ── */
+  .tw{background:var(--white);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;}
+  .tn{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
+  .tbtn{flex:1;min-width:140px;padding:.95rem 1rem;border:none;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);transition:all .2s;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:.4rem;}
+  .tbtn:hover{color:var(--primary);background:var(--gold-pale);}
+  .tbtn.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:600;}
+  .tp{display:none;padding:2rem;animation:fu .3s ease;}
+  .tp.active{display:block;}
+  @keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ── ACCORDION ── */
+  .tg{display:flex;flex-direction:column;gap:1rem;}
+  .tm{background:var(--cream);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s;}
+  .tm:hover{box-shadow:var(--shadow);}
+  .mh{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;gap:1rem;}
+  .mm{display:flex;align-items:center;gap:.9rem;flex:1;}
+  .mn{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--primary);flex-shrink:0;}
+  .mi h3{font-size:.92rem;font-weight:600;}
+  .mi span{font-size:.75rem;color:var(--muted);}
+  .mtags{display:none;}
+  .ti{color:var(--muted);font-size:1rem;transition:transform .3s;flex-shrink:0;}
+  .mb{display:none;padding:0 1.25rem 1.25rem;}
+  .mb.open{display:block;}
+  .ti.open{transform:rotate(180deg);}
+  .si{display:flex;flex-direction:column;gap:.5rem;}
+  .s-item{display:flex;align-items:flex-start;gap:.75rem;background:var(--white);padding:.75rem 1rem;border-radius:8px;border-left:3px solid var(--gold);}
+  .sic{font-size:1rem;flex-shrink:0;margin-top:.1rem;}
+  .sc2 h4{font-size:.83rem;font-weight:600;margin-bottom:.2rem;}
+  .sc2 p{font-size:.77rem;color:var(--slate);line-height:1.55;}
+
+  /* ── FAIXAS ── */
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.5rem;}
+  .fc{border-radius:12px;padding:1.25rem;border-top:4px solid transparent;box-shadow:var(--shadow);}
+  .f1{background:#E8F5E9;border-top-color:#2ECC71;}
+  .f2{background:#E3F2FD;border-top-color:#2980B9;}
+  .f3{background:#FFF8E1;border-top-color:#F39C12;}
+  .f4{background:#F3E5F5;border-top-color:#8E44AD;}
+  .flbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem;}
+  .f1 .flbl{color:#27AE60;}.f2 .flbl{color:var(--blue);}.f3 .flbl{color:#E67E22;}.f4 .flbl{color:#8E44AD;}
+  .fc h3{font-size:1.05rem;font-weight:700;margin-bottom:.2rem;}
+  .frenda{font-size:.78rem;color:var(--slate);margin-bottom:.7rem;}
+  .fitems{display:flex;flex-direction:column;gap:.28rem;}
+  .fitem{font-size:.76rem;display:flex;gap:.4rem;}
+  .fitem strong{min-width:65px;color:var(--primary);}
+  .fitem span{color:var(--slate);}
+  .sbadge{display:inline-block;margin-top:.5rem;padding:.22rem .65rem;border-radius:20px;font-size:.7rem;font-weight:700;}
+  .ssim{background:#D5F5E3;color:#1E8449;}.snao{background:#FDECEA;color:var(--red);}
+
+  /* ── INDICADORES ── */
+  .ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+  .ind-card{background:var(--white);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow);text-align:center;border-top:4px solid var(--gold);}
+  .ind-icon{font-size:1.8rem;margin-bottom:.5rem;}
+  .ind-meta{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.3rem;}
+  .ind-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);margin-bottom:.2rem;}
+  .ind-label{font-size:.8rem;font-weight:600;color:var(--primary);margin-bottom:.4rem;}
+  .ind-desc{font-size:.74rem;color:var(--slate);line-height:1.5;}
+  .ind-card.verde{border-top-color:var(--green);}
+  .ind-card.verde .ind-val{color:var(--green);}
+  .ind-card.azul{border-top-color:var(--blue);}
+  .ind-card.azul .ind-val{color:var(--blue);}
+  .ind-card.laranja{border-top-color:var(--orange);}
+  .ind-card.laranja .ind-val{color:var(--orange);}
+  .ind-card.roxo{border-top-color:#8E44AD;}
+  .ind-card.roxo .ind-val{color:#8E44AD;}
+
+  /* ── TIMELINE ── */
+  .timeline{display:flex;flex-direction:column;}
+  .tli{display:flex;gap:1.5rem;}
+  .tll{display:flex;flex-direction:column;align-items:center;}
+  .tlc{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 4px 12px rgba(201,150,58,.3);}
+  .tlc.hl{background:linear-gradient(135deg,#E67E22,#F39C12);}
+  .tln{width:2px;background:linear-gradient(to bottom,var(--gold),transparent);flex:1;min-height:24px;}
+  .tli:last-child .tln{display:none;}
+  .tlct{background:var(--white);border-radius:12px;padding:1.2rem;margin-bottom:1rem;flex:1;box-shadow:var(--shadow);}
+  .tlct.hl{border-left:4px solid #E67E22;}
+  .tllbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:.3rem;}
+  .tlct h3{font-size:.98rem;font-weight:600;margin-bottom:.45rem;}
+  .tlct p{font-size:.8rem;color:var(--slate);line-height:1.6;}
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;}
+  .chip{padding:.22rem .6rem;border-radius:6px;font-size:.7rem;font-weight:500;background:var(--gold-pale);color:#7A5520;}
+  .chiph{background:#FEF3CD;color:#7D5400;}
+
+  /* ── GARANTIAS ── */
+  .gtw{overflow-x:auto;background:var(--white);border-radius:14px;box-shadow:var(--shadow);}
+  table{width:100%;border-collapse:collapse;}
+  th{background:var(--primary);color:var(--gold-light);font-size:.76rem;font-weight:600;padding:.85rem 1rem;text-align:left;}
+  td{padding:.7rem 1rem;font-size:.79rem;color:var(--slate);border-bottom:1px solid var(--border);}
+  tr:last-child td{border-bottom:none;}
+  tr:nth-child(even) td{background:rgba(201,150,58,.025);}
+  .pb{display:inline-block;padding:.18rem .55rem;border-radius:6px;font-size:.68rem;font-weight:700;}
+  .pe{background:#FDECEA;color:var(--red);}.p90{background:#FEF9E7;color:#856000;}.p1{background:#EAF4FB;color:#1A5276;}.p2{background:#E8F8F5;color:#0E6655;}.p3{background:#EBF5FB;color:#1F618D;}.p5{background:rgba(61,122,75,.1);color:var(--mcmv);}.pp{background:#FDECEA;color:var(--red);font-size:.67rem;}
+
+  /* ── DOCS ── */
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+  .dc{background:var(--white);border-radius:12px;padding:1.2rem;box-shadow:var(--shadow);display:flex;gap:1rem;align-items:flex-start;border-left:4px solid var(--gold);transition:box-shadow .2s;}
+  .dc:hover{box-shadow:var(--shadow-lg);}
+  .di{font-size:1.5rem;flex-shrink:0;}
+  .dinfo h4{font-size:.88rem;font-weight:600;margin-bottom:.22rem;}
+  .dinfo p{font-size:.76rem;color:var(--slate);line-height:1.5;}
+  .dbrands{display:flex;gap:.3rem;margin-top:.45rem;flex-wrap:wrap;}
+
+  /* ── CANAL CARDS ── */
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+  .cc{background:var(--white);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow);border-top:4px solid var(--gold);}
+  .chd{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;}
+  .cicn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+  .iwp{background:#D5F5E3;}.iem{background:#EAF4FB;}.ira{background:#FDECEA;}.icrm{background:var(--gold-pale);}
+  .chd h3{font-size:1rem;font-weight:600;}
+  .chd p{font-size:.72rem;color:var(--muted);}
+  .dlist{display:flex;flex-direction:column;gap:.42rem;}
+  .ditem{display:flex;align-items:flex-start;gap:.6rem;font-size:.77rem;color:var(--slate);}
+  .ditem::before{content:'→';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:.05rem;}
+  .ddest{background:var(--gold-pale);border-radius:8px;padding:.7rem .9rem;margin-top:.8rem;font-size:.77rem;color:#7A5520;}
+  .ddest strong{display:block;margin-bottom:.22rem;font-size:.73rem;text-transform:uppercase;letter-spacing:.05em;}
+
+  /* ── CHECKLIST ── */
+  .clgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.2rem;}
+  .clc{background:var(--white);border-radius:14px;padding:1.4rem;box-shadow:var(--shadow);}
+  .clc h3{font-size:.98rem;font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+  .clist{display:flex;flex-direction:column;gap:.32rem;}
+  .clitem{display:flex;align-items:flex-start;gap:.6rem;font-size:.77rem;color:var(--slate);padding:.3rem 0;border-bottom:1px solid rgba(0,0,0,.04);}
+  .cbox{width:15px;height:15px;border:2px solid var(--gold);border-radius:3px;flex-shrink:0;margin-top:.1rem;}
+  .clitem:last-child{border-bottom:none;}
+
+  /* ── ALERTS ── */
+  .al{padding:.85rem 1.1rem;border-radius:10px;margin:.85rem 0;display:flex;gap:.7rem;align-items:flex-start;}
+  .aw{background:#FEF9E7;border-left:4px solid #F39C12;}
+  .ai{background:#EAF4FB;border-left:4px solid var(--blue);}
+  .ad{background:#FDECEA;border-left:4px solid var(--red);}
+  .as2{background:#E9F7EF;border-left:4px solid var(--green);}
+  .aico{font-size:1.1rem;flex-shrink:0;}
+  .atxt h4{font-size:.82rem;font-weight:600;margin-bottom:.18rem;}
+  .atxt p{font-size:.76rem;color:var(--slate);line-height:1.5;}
+
+  /* ── ENTRADA MORADIA ── */
+  .em-card{background:linear-gradient(135deg,#0A4F3C,#1A6B50);border-radius:16px;padding:1.75rem;color:var(--white);box-shadow:var(--shadow-lg);margin-top:1.25rem;}
+  .em-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#A8EFC8;padding:.28rem .8rem;border-radius:20px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem;}
+  .em-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}
+  .em-card p{font-size:.85rem;line-height:1.65;opacity:.85;margin-bottom:1rem;}
+  .em-val{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#6FEAAA;margin-bottom:.25rem;}
+  .em-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem;}
+  .em-item{background:rgba(255,255,255,.1);border-radius:8px;padding:.7rem .9rem;font-size:.78rem;}
+  .em-item strong{display:block;color:#A8EFC8;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem;}
+
+  /* ── FIADOR ── */
+  .fiador-box{background:var(--white);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;}
+  .fiador-header{background:linear-gradient(135deg,#1A2B3C,#2D4A6B);color:var(--white);padding:1.5rem 1.75rem;}
+  .fiador-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.3rem;}
+  .fiador-header p{font-size:.85rem;opacity:.75;}
+  .fiador-body{padding:1.5rem 1.75rem;}
+  .fiador-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+  .fdoc-section h4{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:.75rem;}
+  .fdoc-list{display:flex;flex-direction:column;gap:.4rem;}
+  .fdoc-item{display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--slate);}
+  .fdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* ── FOOTER ── */
+  footer{background:var(--primary);color:rgba(255,255,255,.5);padding:2rem;text-align:center;margin-top:3rem;border-top:2px solid var(--gold);}
+  footer strong{color:var(--gold-light);}
+
+  @media(max-width:900px){nav{display:none;}.hstats{gap:1.5rem;}.fiador-grid{grid-template-columns:1fr;}.em-grid{grid-template-columns:1fr;}}
+  @media(max-width:600px){.hr .bp{display:none;}.ind-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<!-- SEARCH OVERLAY -->
+<div id="so">
+  <div class="sb">
+    <div class="siw">
+      <span>🔍</span>
+      <input id="sinput" type="text" placeholder="Buscar... ex: fiador, FGTS, garantia, visita 70%, Entrada Moradia" autocomplete="off">
+      <button class="sc" onclick="closeSearch()">✕</button>
+    </div>
+    <div id="sr"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hi">
+    <div class="lg"><div class="lb">D</div><div class="lt"><strong>Grupo Diagonal</strong><span>Portal de Atendimento</span></div></div>
+    <nav>
+      <a href="#procedimentos">Procedimentos</a>
+      <a href="#canais">Canais</a>
+      <a href="#trilha">Trilha</a>
+      <a href="#mcmv">MCMV</a>
+      <a href="#vendas">Planos de Venda</a>
+      <a href="#fiador">Fiador</a>
+      <a href="#processo">Jornada</a>
+      <a href="#garantias">Garantias</a>
+      <a href="#docs">Documentos</a>
+      <a href="#indicadores">Indicadores</a>
+      <a href="#checklist">Checklists</a>
+      <a href="#glossario">Glossário</a>
+    </nav>
+    <div class="hr">
+      <button class="sbtn" onclick="openSearch()">🔍 Buscar <span style="opacity:.5;font-size:.68rem">(Ctrl+K)</span></button>
+      <span class="bp pmcmv">MCMV</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-in">
+    <div class="htag">⚡ Portal de Treinamento — Time do Relacionamento</div>
+    <h1>Trilha de <em>Hard Skills</em> — Atendimento na Construção Civil</h1>
+    <p>Capacitação completa para o time do Grupo Diagonal. Use a busca (Ctrl+K) para encontrar qualquer conteúdo rapidamente durante o atendimento.</p>
+    <div class="hstats">
+      <div><span class="snum">Ctrl+K</span><span class="slbl">Busca rápida</span></div>
+      <div><span class="snum">9,6</span><span class="slbl">Meta CSAT</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PROCEDIMENTOS DO DIA A DIA ═══════════════ -->
+<div class="sec" id="procedimentos">
+  <div class="sh">
+    <h2>Procedimentos do Dia a Dia</h2>
+    <div class="gbar"></div>
+    <p>Respostas rápidas para as situações mais comuns do atendimento — consulte aqui antes de responder ao cliente.</p>
+  </div>
+
+  <div class="tg">
+
+    <!-- BOLETOS -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">💳</div><div class="mi"><h3>Boletos</h3><span>Envio automático, vencido, antecipação e negociação</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">📤</span><div class="sc2"><h4>Envio automático</h4><p>Boletos são enviados <strong>10 dias antes do vencimento</strong> via relacionamento [at] victa.eng.br e ficam disponíveis no portal do cliente após geração.</p></div></div>
+        <div class="s-item"><span class="sic">📅</span><div class="sc2"><h4>Boleto vencido</h4><p>Pode ser pago até o <strong>final do mês vigente</strong> — o banco calcula juros e multa automaticamente. Após virar o mês, é necessário solicitar novo documento. <strong>Não temos concessão de isenção de juros ou multa.</strong> Para negociação de dívida, encaminhar para a equipe de cobrança.</p></div></div>
+        <div class="s-item"><span class="sic">📌</span><div class="sc2"><h4>Pontos importantes</h4><p>Antecipação: sempre das <strong>parcelas mais antigas</strong> para as mais recentes. Aguardar ajuste do INCC após virada do mês antes de gerar novo boleto. Contratos com múltiplos titulares geram boletos proporcionais para cada um.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- PLANTAS -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">📐</div><div class="mi"><h3>Plantas</h3><span>Formato disponível, limitações e orientações para marcenaria</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">📄</span><div class="sc2"><h4>Formato disponível</h4><p>Enviamos apenas <strong>PDF com medidas internas</strong>. Não disponibilizamos formato DWG. Plantas detalhadas (elétricas, hidráulicas) são disponibilizadas <strong>somente na entrega das chaves</strong>.</p></div></div>
+        <div class="s-item"><span class="sic">🧱</span><div class="sc2"><h4>Atenção ao método construtivo</h4><p>O método é <strong>paredes de concreto em forma metálica</strong>, o que pode gerar variações nas dimensões. Recomende ao cliente aguardar medição in loco na vistoria antes de encomendar qualquer projeto de marcenaria.</p></div></div>
+        <div class="s-item"><span class="sic">💬</span><div class="sc2"><h4>Texto sugerido para o cliente</h4><p>"Devido ao método construtivo ser paredes de concreto em forma metálica, é possível que haja variações em relação às dimensões especificadas nos projetos iniciais. Por essa razão, os projetos disponibilizados não incluem cotas exatas para todas as áreas — é de total importância fazer as medições in loco."</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- CONTRATO -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">📄</div><div class="mi"><h3>Contrato</h3><span>Onde encontrar, contrato físico e o que fazer quando não aparece no portal</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">🌐</span><div class="sc2"><h4>Localização</h4><p>A cópia do contrato de compra e venda e a via do contrato de financiamento estão disponíveis <strong>no portal do cliente</strong>.</p></div></div>
+        <div class="s-item"><span class="sic">📁</span><div class="sc2"><h4>Contrato físico não recebido</h4><p>Se o contrato foi assinado fisicamente e o cliente não recebeu a via, verificar com a equipe de <strong>Crédito Imobiliário</strong> o dia e horário para retirada na sede.</p></div></div>
+        <div class="s-item"><span class="sic">🔍</span><div class="sc2"><h4>Não aparece no portal</h4><p>Acionar a equipe de <strong>Crédito Imobiliário</strong> para subir o arquivo no sistema. Registrar o chamado no CV CRM.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- RESCISÃO / DISTRATO -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">❌</div><div class="mi"><h3>Rescisão / Distrato</h3><span>Arrependimento em 7 dias, cálculo de restituição e casos especiais</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">🔄</span><div class="sc2"><h4>Arrependimento — até 7 dias</h4><p>Direito garantido por contrato. Formalizar via e-mail para <strong>Alyne Coelho</strong> (alynelima [at] victa.eng.br) com cópia para cobrança (cobrancadv [at] diagonalvicta.com.br). Abrir chamado no CV. O valor é devolvido integralmente.</p></div></div>
+        <div class="s-item"><span class="sic">📊</span><div class="sc2"><h4>Distrato após 7 dias</h4><p>Somente possível se a unidade <strong>não estiver escriturada ou financiada</strong>. Cálculo: <strong>(valor pago − comissão) ÷ 2</strong>. Exemplo: R$ 2.000 pago − R$ 1.000 comissão = R$ 500 de restituição ao cliente.</p></div></div>
+        <div class="s-item"><span class="sic">🏦</span><div class="sc2"><h4>Unidade já financiada</h4><p>Distrato <strong>não é possível</strong>. O cliente não pode fazer cessão ou venda com nossa intervenção. Verificar sempre a situação no módulo de repasse do CV antes de qualquer orientação.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- JUROS DE OBRA -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">🏗️</div><div class="mi"><h3>Juros de Obra</h3><span>Cobrança durante a construção — não é parcela do financiamento</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">💡</span><div class="sc2"><h4>Como funciona</h4><p>Cobrado <strong>30 dias após a assinatura do contrato de financiamento</strong>. O cálculo é feito mensalmente pela instituição financeira com base na <strong>evolução física da obra</strong>. O cliente paga juros só sobre o valor já liberado — não sobre o total financiado.</p></div></div>
+        <div class="s-item"><span class="sic">🚨</span><div class="sc2"><h4>Ponto crítico no atendimento</h4><p>O cliente frequentemente confunde juros de obra com parcela do financiamento. Esclareça: <strong>não é amortização</strong> — é apenas o custo do dinheiro já utilizado na obra. O financiamento real começa após a entrega das chaves.</p></div></div>
+        <div class="s-item"><span class="sic">⚙️</span><div class="sc2"><h4>Orientações operacionais</h4><p>A CEF geralmente orienta o cliente a deixar valor em conta para débito automático. Dúvidas sobre os valores cobrados: o cliente deve contatar a <strong>agência onde assinou o financiamento</strong> — não temos controle sobre esses valores.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- PORTAL DO CLIENTE -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">🌐</div><div class="mi"><h3>Portal do Cliente</h3><span>Acesso, login, reset de senha e funcionalidades</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">🔍</span><div class="sc2"><h4>Verificar se o cliente já acessou</h4><p>No CV: campo <strong>"Relacionamento" → "Jornada do Cliente"</strong>. Se estiver em branco = nunca acessou o portal.</p></div></div>
+        <div class="s-item"><span class="sic">🔐</span><div class="sc2"><h4>Dados de acesso</h4><p>Link: <strong>https://victa.cvcrm.com.br/cliente/</strong> · Login: <strong>CPF do titular</strong> · Senha provisória: <strong>xjPnFENA</strong></p></div></div>
+        <div class="s-item"><span class="sic">⚙️</span><div class="sc2"><h4>Funcionalidades disponíveis</h4><p>Trocar senha em "Meus Dados" · Ficha financeira e 2ª via de boleto em "Financeiro" · Evolução de obra, fotos e cronograma · Informações do empreendimento.</p></div></div>
+        <div class="s-item"><span class="sic">🔄</span><div class="sc2"><h4>Reset de senha</h4><p>No sistema CV: <strong>Opções → Resetar senha</strong>. O cliente recebe acesso com a senha provisória e deve alterar no primeiro login.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- ATUALIZAÇÃO DE CADASTRO -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">✏️</div><div class="mi"><h3>Atualização de Cadastro</h3><span>Validação de alterações e sincronização com RM Totvs</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">📝</span><div class="sc2"><h4>Como o cliente atualiza</h4><p>Diretamente no portal. Para o atendimento verificar: <strong>"Validações Cadastrais" → situação "Pendente"</strong>.</p></div></div>
+        <div class="s-item"><span class="sic">✅</span><div class="sc2"><h4>Processo de validação</h4><p>1. Clicar em "Visualizar" para identificar a mudança → 2. Validar a alteração → 3. Para mudanças de <strong>e-mail ou telefone</strong>: atualizar também no <strong>RM Totvs</strong>. Manter sempre os dois sistemas sincronizados para garantir envio de boletos e comunicados.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- AGENDAMENTO DE VISTORIA -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">📅</div><div class="mi"><h3>Agendamento de Vistoria</h3><span>Como o cliente agenda, visualização no CV e gestão de termos</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">📱</span><div class="sc2"><h4>Processo pelo cliente</h4><p>O cliente agenda <strong>diretamente no portal</strong>, visualiza os dias e horários disponíveis. A quantidade de vagas por dia é definida pela equipe de obra.</p></div></div>
+        <div class="s-item"><span class="sic">💻</span><div class="sc2"><h4>Visualização e liberação no CV</h4><p>Buscar <strong>"Agendamentos"</strong> na lupa → Selecionar a agenda → Item em <strong>azul = unidade agendada</strong> → Clicar para liberar a vistoria.</p></div></div>
+        <div class="s-item"><span class="sic">📋</span><div class="sc2"><h4>Após a vistoria</h4><p>A obra envia cópia do termo → Verificar informações, erros e assinaturas → Salvar na pasta do empreendimento → Incluir no CV → A situação muda de cor após a conclusão.</p></div></div>
+      </div></div>
+    </div>
+
+    <!-- VISITA NA OBRA -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">👥</div><div class="mi"><h3>Visita na Obra</h3><span>Política de visitas — apenas coletivas, não individuais</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb">
+        <div class="al ad"><span class="aico">🚫</span><div class="atxt"><h4>Visitas individuais NÃO são realizadas</h4><p>A política do Grupo Diagonal é de visitas coletivas organizadas no momento oportuno. Vistorias individuais acontecem apenas na fase final da obra, pelo agendamento via portal.</p></div></div>
+        <div class="si">
+          <div class="s-item"><span class="sic">💬</span><div class="sc2"><h4>Texto padrão para o cliente</h4><p>"No momento oportuno será realizada uma visita coletiva e, posteriormente, com a fase final de obra, o agendamento das vistorias individuais."</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSISTÊNCIA TÉCNICA -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">🔧</div><div class="mi"><h3>Assistência Técnica</h3><span>Pós-entrega, áreas de atuação e avaliação individualizada</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">🗂️</span><div class="sc2"><h4>Áreas de atuação</h4><p>Atualização de obra · Qualidade da venda · Processo de financiamento · Cessão. Cada caso deve ser avaliado individualmente para direcionamento à equipe correta.</p></div></div>
+        <div class="s-item"><span class="sic">📋</span><div class="sc2"><h4>Prazos de garantia — NBR 17170:2022</h4><p>Estrutura: <strong>5 anos</strong> · Impermeabilização: <strong>3 anos</strong> · Hidráulica e elétrica: <strong>2 anos</strong> · Revestimentos e pintura: <strong>1 ano</strong> · Louças e metais: <strong>90 dias</strong> · Itens visíveis: <strong>no ato da vistoria de entrega</strong>.</p></div></div>
+        <div class="s-item"><span class="sic">🚨</span><div class="sc2"><h4>Perda de garantia</h4><p>Falta de manutenção documentada · Reformas não autorizadas · Mau uso ou operação em desacordo com o manual do proprietário. Comunicar sempre ao cliente a importância de guardar os registros de manutenção.</p></div></div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════ TRILHA ═══════════════ -->
+<!-- Procedimentos movidos para o topo — ver abaixo -->
+<div class="sec" id="trilha">
+  <div class="sh"><h2>Trilha de Treinamentos Hard Skills</h2><div class="gbar"></div><p>5 eixos temáticos cobrindo todo o ciclo — da planta ao pós-obra.</p></div>
+  <div class="tw">
+    <div class="tn">
+      <button class="tbtn active" onclick="showTab('t1')">🏗️ Produto & Obra</button>
+      <button class="tbtn" onclick="showTab('t2')">📋 Processos</button>
+      <button class="tbtn" onclick="showTab('t3')">📄 Documentação</button>
+      <button class="tbtn" onclick="showTab('t4')">💻 Sistemas</button>
+      <button class="tbtn" onclick="showTab('t5')">⚖️ Jurídico</button>
+    </div>
+
+    <div id="t1" class="tp active"><div class="tg">
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">01</div><div class="mi"><h3>Leitura e Interpretação de Plantas</h3><span>4h • Todos os cargos</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">📐</span><div class="sc2"><h4>Planta baixa, corte e fachada</h4><p>Identificar ambientes, cotas, orientação solar, nomenclatura técnica. Saber explicar ao cliente o que cada espaço representa ainda na planta.</p></div></div>
+          <div class="s-item"><span class="sic">🗂️</span><div class="sc2"><h4>Simbologia construtiva</h4><p>Elétrico, hidráulico, estrutural, acabamentos. O memorial descritivo é o guia para a vistoria — tudo deve estar conforme.</p></div></div>
+          <div class="s-item"><span class="sic">🏠</span><div class="sc2"><h4>Especificidades MCMV</h4><p>Padrões CAIXA, restrições de layout, especificações por faixa de renda e empreendimento.</p></div></div>
+        </div></div>
+      </div>
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">02</div><div class="mi"><h3>Fases da Construção Civil</h3><span>3h • Do canteiro à entrega</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">⛏️</span><div class="sc2"><h4>Fundação → Estrutura → Acabamentos</h4><p>Como explicar cada etapa ao cliente. Comunicar marcos proativamente reduz chamadas reativas e eleva satisfação.</p></div></div>
+          <div class="s-item"><span class="sic">📸</span><div class="sc2"><h4>Portal de acompanhamento de obra</h4><p>Navegar e explicar: evolução em %, fotos por etapa, cronograma. O time precisa dominar o portal melhor que o cliente.</p></div></div>
+        </div></div>
+      </div>
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">03</div><div class="mi"><h3>Personalização e Opcionais</h3><span>2h • Prazos e restrições</span></div></div><div class="mtags"><span class="tag tmcmv">MCMV</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">⚠️</span><div class="sc2"><h4>Restrições MCMV</h4><p>O que não pode ser alterado: limitações estruturais, restrições CAIXA. Reformas estruturais têm implicações legais além do contrato — cancelam garantia.</p></div></div>
+        </div></div>
+      </div>
+    </div></div>
+
+    <div id="t2" class="tp"><div class="tg">
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">04</div><div class="mi"><h3>Jornada Completa do Cliente</h3><span>3h • Do contrato ao pós-obra</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">🤝</span><div class="sc2"><h4>Pós-contrato e boas-vindas</h4><p>Ativação no portal, primeiro contato, apresentação do time, explicação do INCC, faixas MCMV, Entrada Moradia CE (se aplicável) e modalidade de financiamento.</p></div></div>
+          <div class="s-item"><span class="sic">🔔</span><div class="sc2"><h4>Comunicados de marcos de obra</h4><p>Fundação, laje, cobertura, habite-se. Comunicação proativa reduz chamados reativos.</p></div></div>
+          <div class="s-item"><span class="sic">👷</span><div class="sc2"><h4>Visita à obra — 70% concluído</h4><p>Momento emocional e estratégico. Preparar rota com EPI, memorial descritivo, pontos já executados, responder dúvidas de prazo e acabamento in loco. Registrar no CRM.</p></div></div>
+          <div class="s-item"><span class="sic">🏁</span><div class="sc2"><h4>Vistoria e entrega de chaves</h4><p><strong>Para receber as chaves o cliente precisa estar adimplente ou quitar o saldo devedor</strong>, apresentar fiador (se exigido em contrato) ou comprovar aprovação do financiamento bancário. Checklist completo na seção de Checklists.</p></div></div>
+          <div class="s-item"><span class="sic">🔧</span><div class="sc2"><h4>Pós-entrega e assistência técnica</h4><p>Jornada de até 5 anos de garantia. Chamados, classificação por NBR 17170, vistorias, informe de IR anual.</p></div></div>
+        </div></div>
+      </div>
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">05</div><div class="mi"><h3>Gestão de Reclamações e Escalas</h3><span>3h • Do registro à resolução</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">📊</span><div class="sc2"><h4>Classificação de manifestações</h4><p>Falhas visíveis vs. ocultas, garantia por sistema (NBR 17170). Classificar corretamente é essencial para responder sem prometer o que não é coberto.</p></div></div>
+          <div class="s-item"><span class="sic">🔁</span><div class="sc2"><h4>Matriz de escalonamento</h4><p>Assistente resolve → Analista sênior escala → Supervisora aciona engenharia/jurídico. Registrar cada etapa no CV CRM com evidência fotográfica.</p></div></div>
+        </div></div>
+      </div>
+    </div></div>
+
+    <div id="t3" class="tp"><div class="tg">
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">06</div><div class="mi"><h3>Documentação Pré-Entrega</h3><span>3h</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">🏛️</span><div class="sc2"><h4>Habite-se / CVCO</h4><p>Data do Habite-se = início legal da garantia (NBR 17170). Necessário para entrega de chaves e liberação do crédito bancário.</p></div></div>
+          <div class="s-item"><span class="sic">📋</span><div class="sc2"><h4>Averbação e individualização de matrícula</h4><p>Etapa antes da escritura — pode levar meses. Orientar expectativa do cliente desde cedo evita reclamações.</p></div></div>
+          <div class="s-item"><span class="sic">🏦</span><div class="sc2"><h4>Documentação bancária — repasse</h4><p>Preparar cliente com antecedência: após análise de crédito na CAIXA, nova avaliação só após 90 dias. Orientar sobre FGTS e habilitação no app.</p></div></div>
+        </div></div>
+      </div>
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">07</div><div class="mi"><h3>Documentação Pós-Entrega</h3><span>4h</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">📚</span><div class="sc2"><h4>Manual do proprietário</h4><p>Obrigatório pela NBR 17170. Entregar com explicação ativa — falta de manutenção documentada anula a garantia.</p></div></div>
+          <div class="s-item"><span class="sic">🔑</span><div class="sc2"><h4>Implantação do condomínio</h4><p>Convenção, síndico provisório, 1ª assembleia (síndico eleito, administradora, orçamento).</p></div></div>
+          <div class="s-item"><span class="sic">🔒</span><div class="sc2"><h4>MCMV: restrições pós-entrega</h4><p>Carência para alienação, reformas estruturais proibidas, obrigações do mutuário perante a CAIXA.</p></div></div>
+          <div class="s-item"><span class="sic">🧾</span><div class="sc2"><h4>Informe de pagamentos — Imposto de Renda</h4><p>Fornecer informe anualmente para que o cliente declare o imóvel e os juros corretamente. O cliente usa também a Declaração de IR para comprovação de renda no financiamento.</p></div></div>
+        </div></div>
+      </div>
+    </div></div>
+
+    <div id="t4" class="tp"><div class="tg">
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">08</div><div class="mi"><h3>CV CRM — Construtor de Vendas</h3><span>4h • Registro de todos os contatos</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">💻</span><div class="sc2"><h4>Regra de ouro: registrar TUDO</h4><p>Sem registro no CRM, o atendimento não existe para fins de gestão, auditoria ou defesa jurídica. Todo contato — WhatsApp, e-mail, ligação, visita, Reclame Aqui — deve ser registrado.</p></div></div>
+          <div class="s-item"><span class="sic">🔍</span><div class="sc2"><h4>Consultar histórico antes de atender</h4><p>Antes de qualquer contato, verificar o histórico do cliente. Evita pedir informações repetidas e demonstra profissionalismo.</p></div></div>
+          <div class="s-item"><span class="sic">📊</span><div class="sc2"><h4>Categorias de ocorrência</h4><p>Usar a categoria correta: financeiro / documentação / obra / assistência técnica / pós-venda. A categoria alimenta os relatórios e os indicadores da supervisora.</p></div></div>
+          <div class="s-item"><span class="sic">📅</span><div class="sc2"><h4>Agendamento e follow-up</h4><p>Registrar retornos agendados com alarme. Prazo combinado com o cliente = tarefa no CRM.</p></div></div>
+          <div class="s-item"><span class="sic">🎯</span><div class="sc2"><h4>Jornada do lead — taxa de conversão House</h4><p>Registrar todas as interações com leads de interesse: origem, status, follow-up, proposta enviada. Meta de conversão: 35%. O CRM é a ferramenta de controle dessa meta.</p></div></div>
+        </div></div>
+      </div>
+    </div></div>
+
+    <div id="t5" class="tp"><div class="tg">
+      <div class="tm">
+        <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">09</div><div class="mi"><h3>Contratos, CDC e Base Jurídica</h3><span>3h</span></div></div><div class="mtags"><span class="tag tall">Todos</span></div><span class="ti">▼</span></div>
+        <div class="mb"><div class="si">
+          <div class="s-item"><span class="sic">📜</span><div class="sc2"><h4>Contrato de compra e venda</h4><p>Prazo, tolerância de 180 dias, reajuste INCC/IPCA, multas, distrato. Documento central — conhecê-lo reduz acionamento do jurídico desnecessariamente.</p></div></div>
+          <div class="s-item"><span class="sic">🏛️</span><div class="sc2"><h4>CDC na construção civil</h4><p>Vícios aparentes (90 dias), ocultos (5 anos — Código Civil art. 618). No período de garantia: responsabilidade objetiva da empresa.</p></div></div>
+          <div class="s-item"><span class="sic">💰</span><div class="sc2"><h4>Financiamento, FGTS e INCC</h4><p>Reajuste INCC durante a obra — explicar no início evita reclamações. FGTS: autorizar "moradia própria" no app. Nova análise CAIXA: só após 90 dias do envio anterior.</p></div></div>
+          <div class="s-item"><span class="sic">📋</span><div class="sc2"><h4>Termo de Confissão de Dívida</h4><p>Documento que formaliza renegociação: cliente reconhece débito e assume novas condições. Tem valor jurídico — encaminhar ao jurídico antes de apresentar ao cliente.</p></div></div>
+          <div class="s-item"><span class="sic">🚨</span><div class="sc2"><h4>Quando acionar o jurídico</h4><p>Ameaça de Procon, ação judicial, distrato. Registros no CRM são a principal defesa — cada atendimento registrado é uma barreira preventiva contra litígios.</p></div></div>
+        </div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MCMV E PROGRAMAS DE HABITAÇÃO ═══════════════ -->
+<div class="bgw"><div class="sec" id="mcmv">
+  <div class="sh"><h2>MCMV e Programas de Habitação</h2><div class="gbar"></div><p>Faixas de renda, subsídios, Entrada Moradia Ceará e como orientar o cliente em cada situação.</p></div>
+
+  <div class="tg">
+
+    <!-- FAIXAS MCMV ACCORDION -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">📊</div><div class="mi"><h3>Faixas do MCMV — 2025</h3><span>4 faixas · A faixa define subsídio, juros, prazo e teto do imóvel</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb">
+        <div class="fgrid" style="margin-bottom:1rem">
+          <div class="fc f1">
+            <div class="flbl">Faixa 1</div><h3>Baixíssima Renda</h3>
+            <div class="frenda">Renda até <strong>R$ 3.200</strong>/mês</div>
+            <div class="fitems">
+              <div class="fitem"><strong>Juros:</strong><span>Sem juros / mínimos</span></div>
+              <div class="fitem"><strong>Parcela:</strong><span>A partir de R$ 80</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k*</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Até R$ 55 mil</span></div>
+            </div>
+            <span class="sbadge ssim">✓ Subsídio máximo</span>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Prioridade: mulher chefe de família, área de risco, vulnerabilidade social.</p>
+          </div>
+          <div class="fc f2">
+            <div class="flbl">Faixa 2</div><h3>Baixa Renda</h3>
+            <div class="frenda">Renda: <strong>R$ 3.200,01 a R$ 5.000</strong></div>
+            <div class="fitems">
+              <div class="fitem"><strong>Juros:</strong><span>4,75% a 7,66% a.a.</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 360 meses</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k*</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Parcial</span></div>
+            </div>
+            <span class="sbadge ssim">✓ Subsídio parcial</span>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Composição de renda com até 3 pessoas.</p>
+          </div>
+          <div class="fc f3">
+            <div class="flbl">Faixa 3</div><h3>Média Renda</h3>
+            <div class="frenda">Renda: <strong>R$ 5.000,01 a R$ 9.600</strong></div>
+            <div class="fitems">
+              <div class="fitem"><strong>Juros:</strong><span>7,66% a 8,16% a.a.</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 400 mil</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Não tem</span></div>
+            </div>
+            <span class="sbadge snao">✗ Sem subsídio</span>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Taxas abaixo do mercado. Pode usar FGTS para amortização.</p>
+          </div>
+          <div class="fc f4">
+            <div class="flbl">Faixa 4 — Classe Média</div><h3>Classe Média</h3>
+            <div class="frenda">Renda: <strong>R$ 9.600,01 a R$ 13.000</strong></div>
+            <div class="fitems">
+              <div class="fitem"><strong>Juros:</strong><span>Até 10,50% a.a.</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 600 mil</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Não tem</span></div>
+            </div>
+            <span class="sbadge snao">✗ Sem subsídio</span>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Criada em 2025. Imóveis novos: até 80% financiável.</p>
+          </div>
+        </div>
+        <div class="al ai"><span class="aico">💡</span><div class="atxt"><h4>O que é subsídio?</h4><p>Valor que o Governo Federal desconta do imóvel — o cliente não paga de volta. Nas faixas 1 e 2 pode chegar a R$ 55 mil, reduzindo diretamente o saldo financiado e as parcelas.</p></div></div>
+        <div class="al aw"><span class="aico">⚠️</span><div class="atxt"><h4>Composição de renda e FGTS</h4><p>Compor renda com até 3 pessoas. Para usar FGTS: habilitar autorização de "moradia própria" no app. Após envio de documentação à CAIXA: nova avaliação só após 90 dias.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ENTRADA MORADIA CEARÁ ACCORDION -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">🏠</div><div class="mi"><h3>Entrada Moradia Ceará</h3><span>R$ 20 mil do Governo do Estado · Faixas 1 e 2 · Zera entrada e isenta ITBI</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb">
+        <div class="em-card" style="margin-top:0">
+          <div class="em-badge">🏠 Governo do Estado do Ceará</div>
+          <h3>Subsídio de R$ 20.000 para a entrada do imóvel</h3>
+          <p>Em parceria com o Governo Federal e construtoras credenciadas, o programa oferece R$ 20 mil para reduzir ou zerar o valor da entrada. Além disso, zera os custos com ITBI e registro do imóvel. É cumulativo com o subsídio federal do MCMV (até R$ 55 mil) e com o FGTS.</p>
+          <div class="em-val">R$ 20.000</div>
+          <span style="font-size:.8rem;opacity:.75">+ Isenção de ITBI e taxa de registro</span>
+          <div class="em-grid">
+            <div class="em-item"><strong>Renda máxima</strong>Até R$ 4.700/mês (faixas 1 e 2)</div>
+            <div class="em-item"><strong>Quem pode</strong>Residente no CE há ≥1 ano, +18 anos, 1º imóvel</div>
+            <div class="em-item"><strong>Como funciona</strong>Liberado diretamente à CAIXA para abater a entrada</div>
+            <div class="em-item"><strong>Empreendimentos</strong>Imóveis cadastrados no programa</div>
+            <div class="em-item"><strong>Acumulativo</strong>Pode somar com subsídio federal + FGTS</div>
+            <div class="em-item"><strong>Passo a passo</strong>Simular na CAIXA → cadastrar no site → aguardar CCI → assinar</div>
+          </div>
+        </div>
+        <div class="al ai" style="margin-top:.75rem"><span class="aico">📌</span><div class="atxt"><h4>Requisitos do cliente</h4><p>Residir no CE há ≥ 1 ano · Mais de 18 anos · Brasileiro nato ou naturalizado · Renda até R$ 4.700 · Não ter imóvel em nome próprio · Nunca ter sido beneficiado por programa habitacional · Crédito pré-aprovado pela CAIXA.</p></div></div>
+        <div class="al as2"><span class="aico">✅</span><div class="atxt"><h4>Como apoiar o cliente</h4><p>1. Verificar se o empreendimento está cadastrado · 2. Orientar simulação na CAIXA e obter número APF · 3. Indicar <strong>entradamoradia.ce.gov.br</strong> · 4. Informar que o benefício vai direto para a CAIXA abater a entrada · 5. Registrar no CV CRM.</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════════ PLANOS DE VENDA ═══════════════ -->
+<div class="bgw"><div class="sec" id="vendas">
+  <div class="sh"><h2>Planos de Venda</h2><div class="gbar"></div><p>Entenda as diferenças entre os planos de compra — associativo com a Caixa e direto/flex com a construtora — e como explicar cada um ao cliente com clareza.</p></div>
+
+  <!-- JUROS DE OBRA -->
+  <div class="tg" style="margin-bottom:1.25rem">
+    <div class="tm">
+      <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">🧱</div><div class="mi"><h3>Juros de Fase de Obra — O que são e como explicar</h3><span>Ponto crítico no atendimento — cliente confunde com parcela do financiamento</span></div></div><span class="ti">▼</span></div>
+      <div class="mb"><div class="si">
+        <div class="s-item"><span class="sic">💡</span><div class="sc2"><h4>O que são os juros de obra</h4><p>São os juros cobrados <strong>durante a construção do imóvel, antes da entrega das chaves</strong>. O banco (geralmente a Caixa) vai liberando o dinheiro aos poucos para a construtora conforme a obra avança. Enquanto isso, o cliente já começa a pagar juros sobre o valor liberado.</p></div></div>
+        <div class="s-item"><span class="sic">📌</span><div class="sc2"><h4>Exemplo simples para usar com o cliente</h4><p>Você financiou R$ 200 mil. No início, só liberaram R$ 20 mil → você paga juros só sobre os R$ 20 mil (não sobre tudo). Com o avanço da obra, mais dinheiro é liberado → os juros vão aumentando gradualmente até a entrega.</p></div></div>
+        <div class="s-item"><span class="sic">🚨</span><div class="sc2"><h4>Ponto crítico no atendimento</h4><p>Muitos clientes acham que estão pagando o financiamento, mas na verdade estão pagando <strong>apenas juros, sem amortizar a dívida</strong>. Esclarecer isso desde o início evita reclamações e conflitos. O financiamento propriamente dito começa só depois da entrega das chaves.</p></div></div>
+        <div class="s-item"><span class="sic">⚙️</span><div class="sc2"><h4>Operacional</h4><p>Primeira cobrança: 30 dias após assinatura do contrato de financiamento. A CEF geralmente orienta deixar valor em conta para débito automático. Dúvidas sobre o valor cobrado: contatar a agência onde assinou o financiamento — não temos controle sobre esses valores.</p></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ASSOCIATIVO -->
+  <div class="tg" style="margin-bottom:1.25rem">
+    <div class="tm">
+      <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">🏦</div><div class="mi"><h3>Financiamento Associativo com a Caixa</h3><span>Modelo mais comum em imóveis na planta — maior segurança para o cliente</span></div></div><span class="ti">▼</span></div>
+      <div class="mb">
+        <div class="al as2" style="margin-bottom:.75rem"><span class="aico">✅</span><div class="atxt"><h4>O que é</h4><p>O cliente já entra com <strong>financiamento aprovado pela Caixa</strong>. A Caixa financia o cliente e acompanha a obra ao mesmo tempo — é o modelo mais usado e mais seguro para imóveis na planta.</p></div></div>
+        <div class="si">
+          <div class="s-item"><span class="sic">🔄</span><div class="sc2"><h4>Fluxo do associativo</h4><p>1. Cliente compra o imóvel → 2. Assina contrato com a Caixa → 3. <strong>Durante a obra:</strong> paga juros de obra (sobre o valor liberado) → 4. <strong>Após a entrega:</strong> começa o financiamento normal com parcelas de amortização + juros.</p></div></div>
+          <div class="s-item"><span class="sic">✅</span><div class="sc2"><h4>Vantagens</h4><p>Juros menores que o mercado · Segurança (obra acompanhada pela Caixa) · Crédito garantido desde o início da compra · Mais proteção ao comprador.</p></div></div>
+          <div class="s-item"><span class="sic">⚠️</span><div class="sc2"><h4>Pontos de atenção</h4><p>Cliente precisa ser aprovado no início — renda e score impactam bastante. Burocracia maior. Após envio de documentação à Caixa: nova análise só pode ser feita após 90 dias. Fiador exigido na confissão de dívida na maioria dos casos.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRETO / FLEX -->
+  <div class="tg">
+    <div class="tm">
+      <div class="mh" onclick="tog(this)"><div class="mm"><div class="mn">🏢</div><div class="mi"><h3>Plano Direto / Flex — Financiamento com a Construtora</h3><span>Cliente paga direto para a empresa durante a obra — atenção ao risco de aprovação futura</span></div></div><span class="ti">▼</span></div>
+      <div class="mb">
+        <div class="al ai" style="margin-bottom:.75rem"><span class="aico">💡</span><div class="atxt"><h4>O que é</h4><p>O cliente compra diretamente com a construtora, sem banco no início. Também chamado de <strong>Plano Direto, Flex ou Crédito Construtora</strong>. Durante a obra paga entrada + parcelas mensais + intermediárias/anuais para a empresa. Pode haver correção pelo INCC.</p></div></div>
+        <div class="si">
+          <div class="s-item"><span class="sic">🔄</span><div class="sc2"><h4>Fluxo do plano direto</h4><p>Durante a obra → cliente paga entrada + parcelas mensais à construtora (sem juros de obra da Caixa, mas com correção INCC). <strong>Ao final da obra:</strong> o cliente precisa financiar com um banco (ex: Caixa) para quitar a construtora, ou quitar com recursos próprios.</p></div></div>
+          <div class="s-item"><span class="sic">🏁</span><div class="sc2"><h4>Após a obra — dois caminhos</h4><p><strong>1. Consegue financiamento bancário:</strong> quita a construtora → começa financiamento normal. <strong>2. Não consegue financiamento:</strong> precisa quitar com recursos próprios ou negociar com a construtora — o que nem sempre é fácil.</p></div></div>
+          <div class="s-item"><span class="sic">🔑</span><div class="sc2"><h4>Condição para receber as chaves</h4><p><strong>O cliente precisa:</strong> estar adimplente com todas as parcelas + apresentar fiador aprovado (se exigido) <strong>OU</strong> quitar o saldo devedor <strong>OU</strong> ter aprovação bancária para o repasse. Sem uma dessas condições, não há entrega de chaves.</p></div></div>
+        </div>
+        <div class="al ad" style="margin-top:.75rem"><span class="aico">🚨</span><div class="atxt"><h4>Grande risco — comunicar sempre com clareza</h4><p>Diferente do associativo, <strong>aqui não existe garantia de aprovação futura</strong>. O cliente pode comprar hoje e não conseguir financiar depois. Comunicar isso desde o início é fundamental para evitar conflitos na entrega.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-top:1.5rem;">
+    <div style="background:var(--primary);padding:1rem 1.5rem;display:flex;align-items:center;gap:.75rem;">
+      <span style="font-size:1.1rem">📊</span>
+      <span style="font-size:.85rem;font-weight:600;color:var(--white)">Resumo Comparativo — Use para explicar ao cliente</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr>
+          <th style="background:rgba(45,138,78,.1);color:var(--primary);font-size:.75rem;font-weight:700;padding:.8rem 1rem;text-align:left;">Critério</th>
+          <th style="background:rgba(39,174,96,.1);color:#1B5E38;font-size:.75rem;font-weight:700;padding:.8rem 1rem;text-align:left;">🏦 Associativo (Caixa)</th>
+          <th style="background:rgba(41,128,185,.08);color:#1A5276;font-size:.75rem;font-weight:700;padding:.8rem 1rem;text-align:left;">🏢 Direto / Flex</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--slate);font-weight:600;">Banco desde o início</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--green);">✓ Sim</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--red);">✗ Não</td></tr>
+          <tr><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--slate);font-weight:600;">Paga juros de obra</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--orange);">⚠️ Sim, durante a obra</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--green);">✓ Não</td></tr>
+          <tr><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--slate);font-weight:600;">Correção INCC</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--orange);">⚠️ Sim</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--orange);">⚠️ Sim</td></tr>
+          <tr><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--slate);font-weight:600;">Garantia de crédito</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--green);">✓ Aprovado antes</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--red);">✗ Sem garantia futura</td></tr>
+          <tr><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--slate);font-weight:600;">Após a entrega</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--green);">✓ Vira financiamento normal</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--orange);">⚠️ Precisa financiar depois</td></tr>
+          <tr><td style="padding:.65rem 1rem;font-size:.8rem;color:var(--slate);font-weight:600;">Segurança geral</td><td style="padding:.65rem 1rem;font-size:.8rem;color:var(--green);">✓ Maior</td><td style="padding:.65rem 1rem;font-size:.8rem;color:var(--red);">✗ Maior risco</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:1rem 1.25rem;background:var(--gold-pale);border-top:1px solid var(--border);">
+      <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:.4rem;">💬 Frase pronta — use com o cliente</div>
+      <div style="font-size:.82rem;color:var(--slate);font-style:italic;line-height:1.6;">"No associativo com a Caixa, você já entra com o financiamento aprovado e paga juros durante a obra. Já no plano direto, você paga a construtora durante a obra e só vai tentar o financiamento depois — então precisa garantir que vai ter crédito lá na frente."</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════════ FIADOR ═══════════════ -->
+<div class="sec" id="fiador">
+  <div class="sh"><h2>Fiador — Documentação e Responsabilidades</h2><div class="gbar"></div><p>O fiador é exigido para todos os clientes que possuem <strong>pro soluto</strong> — ou seja, que têm parcelas com a Victa com vencimento após a entrega das chaves.</p></div>
+
+  <div class="al aw" style="margin-bottom:1.25rem"><span class="aico">⚠️</span><div class="atxt"><h4>O que é pro soluto e quando o fiador é exigido</h4><p>Pro soluto significa que existem parcelas do contrato com vencimento <strong>após a entrega das chaves</strong>. Todo cliente nessa situação precisa apresentar fiador — independente do plano de venda ser associativo, direto ou flex. O fiador garante o pagamento dessas parcelas que continuam vencendo após o cliente já estar na posse do imóvel.</p></div></div>
+
+  <div class="fiador-box">
+    <div class="fiador-header">
+      <h3>🤝 Quem pode ser fiador</h3>
+      <p>Requisitos mínimos para ser aceito como fiador no Grupo Diagonal</p>
+    </div>
+    <div class="fiador-body">
+      <div class="fiador-grid">
+        <div class="fdoc-section">
+          <h4>✅ Requisitos obrigatórios</h4>
+          <div class="fdoc-list">
+            <div class="fdoc-item"><span class="fdot"></span> Maior de 18 anos ou legalmente emancipado</div>
+            <div class="fdoc-item"><span class="fdot"></span> CPF regular — sem restrições em bureaus de crédito</div>
+            <div class="fdoc-item"><span class="fdot"></span> Nome limpo (Serasa, SPC, SCPC)</div>
+            <div class="fdoc-item"><span class="fdot"></span> Comprovante de endereço atualizado (últimos 3 meses)</div>
+            <div class="fdoc-item"><span class="fdot"></span> Documento de identidade com foto (RG ou CNH)</div>
+            <div class="fdoc-item"><span class="fdot"></span> CPF (pode ser o próprio RG se constar o CPF)</div>
+          </div>
+        </div>
+        <div class="fdoc-section">
+          <h4>📄 Documentação adicional</h4>
+          <div class="fdoc-list">
+            <div class="fdoc-item"><span class="fdot"></span> Certidão de estado civil (casamento, nascimento ou divórcio)</div>
+            <div class="fdoc-item"><span class="fdot"></span> Se casado: documentos do cônjuge também são obrigatórios</div>
+            <div class="fdoc-item"><span class="fdot"></span> Comprovante de renda (holerite, extrato ou declaração IR)</div>
+            <div class="fdoc-item"><span class="fdot"></span> Se autônomo: declaração de renda comprobatória</div>
+            <div class="fdoc-item"><span class="fdot"></span> Não é exigido imóvel próprio para ser fiador</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="al ad" style="margin-top:1.25rem"><span class="aico">🚨</span><div class="atxt"><h4>Responsabilidade do fiador — seja transparente</h4><p>O fiador responde com seu patrimônio pelas obrigações do comprador. O atendimento deve ser claro sobre essa responsabilidade — sem minimizar ou pressionar. Transparência evita conflitos futuros e protege o Grupo Diagonal juridicamente.</p></div></div>
+
+      <div class="al ai" style="margin-top:.6rem"><span class="aico">📌</span><div class="atxt"><h4>LGPD — Proteger dados do fiador</h4><p>Os dados do fiador são pessoais e sensíveis. Não compartilhar com terceiros sem autorização. Registrar no CV CRM que o fiador foi apresentado e os documentos estão arquivados.</p></div></div>
+
+      <div class="al as2" style="margin-top:.6rem"><span class="aico">🔑</span><div class="atxt"><h4>Fiador e entrega de chaves</h4><p>Clientes com <strong>pro soluto</strong> (parcelas vencendo após a entrega) precisam apresentar fiador aprovado para receber as chaves. Além disso, o cliente precisa: estar adimplente com todas as parcelas em aberto + ter a vistoria da unidade aprovada.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ JORNADA ═══════════════ -->
+<div class="bgw"><div class="sec" id="processo">
+  <div class="sh"><h2>Jornada do Cliente no Grupo Diagonal</h2><div class="gbar"></div><p>Da assinatura do contrato ao pós-obra — mínimo de 8 anos de relacionamento. Registrar cada etapa no CV CRM.</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+    <div class="timeline">
+      <div class="tli"><div class="tll"><div class="tlc">📝</div><div class="tln"></div></div><div class="tlct"><div class="tllbl">Fase 1 — Pré-Obra</div><h3>Contrato, boas-vindas e ativação</h3><p>Ativação no portal, cronograma, apresentação do time. Explicar INCC, faixa MCMV, Entrada Moradia CE (se aplicável), fiador (se exigido).</p><div class="chips"><span class="chip">Contrato</span><span class="chip">Portal</span><span class="chip">CV CRM</span></div></div></div>
+      <div class="tli"><div class="tll"><div class="tlc">🏗️</div><div class="tln"></div></div><div class="tlct"><div class="tllbl">Fase 2 — Obra (~3 anos)</div><h3>Acompanhamento construtivo</h3><p>Comunicados de marcos, fotos, personalização. Parcelas reajustadas pelo INCC. Registrar todos os contatos no CV CRM.</p><div class="chips"><span class="chip">Marcos de Obra</span><span class="chip">INCC</span><span class="chip">CRM</span></div></div></div>
+      <div class="tli"><div class="tll"><div class="tlc hl">👷</div><div class="tln"></div></div><div class="tlct hl"><div class="tllbl">⭐ Fase 3 — Visita à Obra (70%)</div><h3>Momento especial de aproximação</h3><p>EPI obrigatório. Memorial em mãos. Apresentar o que já foi executado. Dúvidas de prazo e acabamento. Momento emocional — criar conexão com o imóvel. Registrar no CRM.</p><div class="chips"><span class="chiph">EPI obrigatório</span><span class="chiph">70% concluído</span></div></div></div>
+    </div>
+    <div class="timeline">
+      <div class="tli"><div class="tll"><div class="tlc">🔍</div><div class="tln"></div></div><div class="tlct"><div class="tllbl">Fase 4 — Pré-Entrega</div><h3>Habite-se e documentação bancária</h3><p>Habite-se = início da garantia. Orientar documentação para repasse bancário com 90+ dias de antecedência. Verificar situação do fiador se cliente tem pro soluto.</p><div class="chips"><span class="chip">Habite-se</span><span class="chip">Repasse</span><span class="chip">Fiador</span></div></div></div>
+      <div class="tli"><div class="tll"><div class="tlc hl">🔎</div><div class="tln"></div></div><div class="tlct hl"><div class="tllbl">⭐ Fase 4b — Vistoria Obrigatória</div><h3>Vistoria da unidade — obrigatória antes das chaves</h3><p>O cliente <strong>deve realizar a vistoria e ter aprovação</strong> para receber as chaves. Caso não compareça, será notificado <strong>até 3 vezes</strong>. Após a 3ª notificação sem comparecimento, a unidade será <strong>lacrada</strong> e as chaves entregues por processo formal. Registrar todas as tentativas no CV CRM.</p><div class="chips"><span class="chiph">Vistoria obrigatória</span><span class="chiph">3 notificações</span><span class="chiph">Lacre da unidade</span></div></div></div>
+      <div class="tli"><div class="tll"><div class="tlc">🔑</div><div class="tln"></div></div><div class="tlct"><div class="tllbl">Fase 5 — Entrega de Chaves</div><h3>Condições obrigatórias para receber as chaves</h3><p><strong>O cliente precisa cumprir todos os itens:</strong><br>✓ Vistoria aprovada (ou 3 notificações com lacre)<br>✓ Adimplente com todas as parcelas em aberto<br>✓ Fiador aprovado (se tiver pro soluto) ou saldo quitado<br><br>Após as chaves: manual entregue com explicação, 1ª assembleia do condomínio.</p><div class="chips"><span class="chip">Vistoria aprovada</span><span class="chip">Adimplência</span><span class="chip">Pro soluto / Fiador</span></div></div></div>
+      <div class="tli"><div class="tll"><div class="tlc">🔧</div></div><div class="tlct"><div class="tllbl">Fase 6 — Assistência Técnica (até 5 anos)</div><h3>Garantias e pós-obra</h3><p>Chamados via portal/WhatsApp/CRM. NBR 17170. Informe de IR anual. Restrições MCMV pós-entrega. Manutenção preventiva do proprietário documentada.</p><div class="chips"><span class="chip">Garantia</span><span class="chip">NBR 17170</span><span class="chip">IR Anual</span></div></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════════ GARANTIAS ═══════════════ -->
+<div class="sec" id="garantias">
+  <div class="sh"><h2>Prazos de Garantia — NBR 17170:2022</h2><div class="gbar"></div><p>Em vigor desde junho/2023. Dominar esta tabela evita conflitos e passivos jurídicos.</p></div>
+  <div class="al ai" style="margin-bottom:1.25rem"><span class="aico">📌</span><div class="atxt"><h4>Regra de ouro</h4><p>Prazo começa na data do Habite-se ou entrega das chaves, <strong>o que ocorrer primeiro</strong>. Reparos feitos pela AT <strong>não renovam</strong> o prazo. Falta de manutenção documentada anula a garantia.</p></div></div>
+  <div class="gtw">
+    <table>
+      <thead><tr><th>Sistema / Componente</th><th>Prazo</th><th>O que cobre</th><th>Perde garantia se...</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Estrutura (fundações, pilares, vigas, lajes)</strong></td><td><span class="pb p5">5 anos</span></td><td>Risco à solidez e segurança</td><td><span class="pb pp">Reformas estruturais não autorizadas</span></td></tr>
+        <tr><td><strong>Impermeabilização</strong></td><td><span class="pb p3">3 anos</span></td><td>Infiltrações de falha construtiva</td><td><span class="pb pp">Reforma sem aprovação</span></td></tr>
+        <tr><td><strong>Instalações hidráulicas</strong></td><td><span class="pb p2">2 anos</span></td><td>Vazamentos de origem construtiva</td><td><span class="pb pp">Mau uso / sem manutenção</span></td></tr>
+        <tr><td><strong>Instalações elétricas</strong></td><td><span class="pb p2">2 anos</span></td><td>Falhas de origem construtiva</td><td><span class="pb pp">Sobrecarga / instalações não homologadas</span></td></tr>
+        <tr><td><strong>Revestimentos (cerâmicas)</strong></td><td><span class="pb p1">1 ano</span></td><td>Descolamento e trincas</td><td><span class="pb pp">Abrasivos / reforma</span></td></tr>
+        <tr><td><strong>Pintura e revestimento de paredes</strong></td><td><span class="pb p1">1 ano</span></td><td>Bolhas e descascamento construtivos</td><td><span class="pb pp">Sem limpeza / reforma</span></td></tr>
+        <tr><td><strong>Esquadrias (portas e janelas)</strong></td><td><span class="pb p1">1 ano</span></td><td>Defeitos de fabricação e instalação</td><td><span class="pb pp">Impacto / mau uso</span></td></tr>
+        <tr><td><strong>Louças, metais e bancadas</strong></td><td><span class="pb p90">90 dias</span></td><td>Defeitos verificáveis na entrega</td><td><span class="pb pp">Após prazo = responsabilidade do proprietário</span></td></tr>
+        <tr><td><strong>Itens visíveis — vistoria de entrega</strong></td><td><span class="pb pe">No ato da vistoria</span></td><td>Pisos desnivelados, portas danificadas</td><td><span class="pb pp">Não apontado na vistoria = sem cobertura</span></td></tr>
+        <tr><td><strong>Reparos parciais pela AT</strong></td><td><span class="pb p90">90 dias ou remanescente</span></td><td>Apenas a área reparada</td><td><span class="pb pp">Prazo original não é renovado</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ DOCUMENTOS ═══════════════ -->
+<div class="bgw"><div class="sec" id="docs">
+  <div class="sh"><h2>Documentos — O Que o Atendimento Precisa Saber</h2><div class="gbar"></div><p>Documentos recorrentes na jornada — da venda ao pós-obra.</p></div>
+  <div class="dgrid">
+    <div class="dc"><div class="di">📜</div><div class="dinfo"><h4>Contrato de Compra e Venda</h4><p>Prazo, tolerância, reajuste INCC, distrato. Conhecer bem reduz acionamentos desnecessários do jurídico.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">🏛️</div><div class="dinfo"><h4>Habite-se / CVCO</h4><p>Início legal da garantia. Necessário para entrega de chaves e liberação de crédito bancário.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">📋</div><div class="dinfo"><h4>Laudo de Vistoria</h4><p>Itens não apontados perdem cobertura de garantia. Instrução prévia ao cliente é essencial.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">📝</div><div class="dinfo"><h4>Termo de Confissão de Dívida</h4><p>Formaliza renegociação de débito. O fiador assina junto. Tem valor jurídico — encaminhar ao jurídico antes de apresentar.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">📋</div><div class="dinfo"><h4>Procuração</h4><p>Autoriza terceiro a agir em nome do cliente. Sem procuração reconhecida em cartório, <strong>não fornecer dados a ninguém</strong> (LGPD).</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">🧾</div><div class="dinfo"><h4>Declaração de Imposto de Renda</h4><p>Usada como comprovação de renda no financiamento. Fornecer informe de pagamentos anualmente para o cliente declarar o imóvel e os juros.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">🔑</div><div class="dinfo"><h4>Termo de Entrega de Unidade</h4><p>Assinado na entrega. Assinar somente após pendências resolvidas. Condição: adimplência + fiador ou saldo quitado.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">📚</div><div class="dinfo"><h4>Manual do Proprietário + Termo de Garantia</h4><p>Obrigatórios pela NBR 17170. Entregar com explicação ativa. Falta de manutenção documentada anula a garantia.</p><div class="dbrands"><span class="tag tall">Todos</span></div></div></div>
+    <div class="dc"><div class="di">🔒</div><div class="dinfo"><h4>Restrições MCMV / CAIXA</h4><p>Carência de alienação, reformas estruturais proibidas, obrigações do mutuário. Reformas não autorizadas = cancelamento de garantia + irregularidade.</p><div class="dbrands"><span class="tag tmcmv">MCMV</span></div></div></div>
+  </div>
+</div></div>
+
+<!-- ═══════════════ INDICADORES ═══════════════ -->
+<div class="sec" id="indicadores">
+  <div class="sh"><h2>Indicadores de Atendimento — Metas do Time</h2><div class="gbar"></div><p>Os indicadores que guiam a performance do time. Acompanhar diariamente no CV CRM e nos relatórios da supervisora.</p></div>
+  <div class="ind-grid">
+    <div class="ind-card">
+      <div class="ind-icon">⭐</div>
+      <div class="ind-meta">CSAT — WhatsApp</div>
+      <div class="ind-val">9,6</div>
+      <div class="ind-label">Meta de Satisfação</div>
+      <div class="ind-desc">Pesquisa enviada após atendimento no WhatsApp. Avalia a qualidade da interação — cordialidade, clareza e resolução.</div>
+    </div>
+    <div class="ind-card verde">
+      <div class="ind-icon">🎯</div>
+      <div class="ind-meta">Resolução no Mesmo Dia</div>
+      <div class="ind-val">80%</div>
+      <div class="ind-label">Meta de Resolução D0</div>
+      <div class="ind-desc">80% dos atendimentos devem ser resolvidos no mesmo dia do contato. Indica capacitação e agilidade do time.</div>
+    </div>
+    <div class="ind-card azul">
+      <div class="ind-icon">📅</div>
+      <div class="ind-meta">SLA</div>
+      <div class="ind-val">1 dia</div>
+      <div class="ind-label">Prazo máximo de resposta</div>
+      <div class="ind-desc">Todos os contatos recebidos devem ter resposta em até 1 dia útil — sem exceção. Inclui WhatsApp, e-mail e Reclame Aqui.</div>
+    </div>
+    <div class="ind-card laranja">
+      <div class="ind-icon">🔁</div>
+      <div class="ind-meta">Taxa de Reincidência</div>
+      <div class="ind-val">18%</div>
+      <div class="ind-label">Meta máxima</div>
+      <div class="ind-desc">No máximo 18% dos chamados podem ser reabertos pelo mesmo problema. Alta reincidência indica resolução incompleta ou falta de orientação ao cliente.</div>
+    </div>
+    <div class="ind-card roxo">
+      <div class="ind-icon">🏆</div>
+      <div class="ind-meta">Reclame Aqui</div>
+      <div class="ind-val">5,0</div>
+      <div class="ind-label">Nota alvo na plataforma</div>
+      <div class="ind-desc">Manter nota 5,0 no Reclame Aqui. Responder em até 24h (prazo interno), com empatia, ação concreta e convidar para canal privado.</div>
+    </div>
+    <div class="ind-card verde">
+      <div class="ind-icon">🏠</div>
+      <div class="ind-meta">Conversão de Leads — House</div>
+      <div class="ind-val">35%</div>
+      <div class="ind-label">Meta de conversão</div>
+      <div class="ind-desc">35% dos leads captados devem converter em contrato. Registrar todas as interações no CV CRM para rastrear a jornada do lead.</div>
+    </div>
+  </div>
+  <div class="al ai" style="margin-top:1.25rem"><span class="aico">📊</span><div class="atxt"><h4>Como acompanhar os indicadores</h4><p>CSAT: pesquisa automática enviada via WhatsApp após encerramento do atendimento. Reincidência e resolução D0: extrair do CV CRM semanalmente. SLA: configurar alertas no CRM para contatos sem resposta após 4h. Nota do Reclame Aqui: monitorar diariamente. Conversão House: report semanal para a supervisora.</p></div></div>
+</div>
+
+<!-- ═══════════════ CANAIS ═══════════════ -->
+<div class="bgw"><div class="sec" id="canais">
+  <div class="sh"><h2>Canais de Atendimento — Dicas e Protocolos</h2><div class="gbar"></div><p>Como atender bem em cada canal. SLA interno: resposta em até 1 dia útil em todos os canais.</p></div>
+  <div class="cgrid">
+
+    <!-- TELEFONE -->
+    <div class="cc">
+      <div class="chd"><div class="cicn" style="background:#E8F5E9">📞</div><div><h3>Telefone</h3><p>Atendimento receptivo — saber qual empresa o cliente está ligando</p></div></div>
+      <div class="dlist">
+        <div class="ditem"><strong>Identificar a empresa antes de atender.</strong> O Grupo Diagonal possui duas marcas com clientes distintos — o atendimento muda conforme a empresa.</div>
+        <div class="ditem">Aguardar o cliente falar ou verificar pelo número/sistema qual empresa ele pertence antes de se identificar.</div>
+        <div class="ditem">Após identificar, registrar o contato no CV CRM imediatamente com: canal = telefone, nome do cliente e assunto.</div>
+        <div class="ditem">Fale com voz clara, calma e simpática. Se precisar colocar em espera, informar antes: "Vou verificar para o senhor(a), pode aguardar um momento?"</div>
+        <div class="ditem">Nunca deixar o cliente em silêncio por mais de 30 segundos sem dar retorno.</div>
+        <div class="ditem">Se não puder resolver na hora, combinar retorno com prazo e registrar no CRM como tarefa agendada.</div>
+      </div>
+      <div class="ddest" style="margin-top:.8rem">
+        <strong>📢 Scripts de atendimento</strong>
+        <div style="margin-top:.5rem;display:flex;flex-direction:column;gap:.5rem;">
+          <div style="background:rgba(45,138,78,.08);border-left:3px solid var(--gold);border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:var(--slate);">
+            <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);display:block;margin-bottom:.25rem">🏢 Victa Engenharia</span>
+            <em>"Victa Engenharia, bom dia/boa tarde! Meu nome é [seu nome], como posso ajudar?"</em>
+          </div>
+          <div style="background:rgba(45,138,78,.08);border-left:3px solid var(--gold);border-radius:6px;padding:.6rem .8rem;font-size:.78rem;color:var(--slate);">
+            <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);display:block;margin-bottom:.25rem">🏗️ Diagonal</span>
+            <em>"Diagonal Construtora, bom dia/boa tarde! Meu nome é [seu nome], como posso ajudar?"</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTAL DE RELACIONAMENTO -->
+    <div class="cc">
+      <div class="chd"><div class="cicn" style="background:rgba(45,138,78,.1)">🌐</div><div><h3>Portal de Relacionamento</h3><p>Solicitações abertas pelo cliente — respondemos no CV CRM</p></div></div>
+      <div class="dlist">
+        <div class="ditem">O cliente acessa o portal e abre uma solicitação na seção de atendimentos. Essa solicitação aparece no <strong>CV CRM — Construtor de Vendas</strong> para o time responder.</div>
+        <div class="ditem">Verificar diariamente as solicitações abertas no CV. O prazo de resposta segue o SLA de <strong>1 dia útil</strong>.</div>
+        <div class="ditem">Ao responder no CV CRM, a resposta é <strong>exibida no portal para o cliente</strong> — ele acompanha o andamento diretamente pelo sistema.</div>
+        <div class="ditem">Categorizar corretamente cada solicitação: financeiro / documentação / obra / assistência técnica / pós-venda.</div>
+        <div class="ditem">Ao finalizar a solicitação, atualizar o status para "resolvido" e registrar o encaminhamento dado.</div>
+        <div class="ditem">Se a solicitação exigir ação de outra equipe (jurídico, engenharia, crédito imobiliário), registrar o encaminhamento e informar o cliente com prazo estimado.</div>
+      </div>
+      <div class="ddest"><strong>🔄 Fluxo resumido</strong>Cliente abre solicitação no portal → aparece no CV CRM → atendimento responde no CV → resposta aparece no portal para o cliente acompanhar.</div>
+    </div>
+
+    <div class="cc">
+      <div class="chd"><div class="cicn iwp">💬</div><div><h3>WhatsApp — Botmaker</h3><p>Canal de maior volume — meta CSAT 9,6</p></div></div>
+      <div class="dlist">
+        <div class="ditem">Consultar histórico no CV CRM antes de responder. Nunca pedir o que o cliente já enviou.</div>
+        <div class="ditem">Mensagens curtas e objetivas — sem parágrafos longos. Quebre em balões separados.</div>
+        <div class="ditem">Responder em até 2h no horário comercial. Se não resolver, informar prazo: "Verifico e retorno até o fim do dia."</div>
+        <div class="ditem">Confirmar entendimento ao final: "Ficou claro? Posso ajudar com mais alguma coisa?"</div>
+        <div class="ditem">Nunca discutir dívida, contrato ou questão jurídica por WhatsApp — encaminhar para e-mail ou ligação.</div>
+        <div class="ditem">Registrar o contato no CV CRM após cada atendimento.</div>
+      </div>
+      <div class="ddest"><strong>⚙️ Quando assumir do Botmaker</strong>Cliente digitar "atendente", "humano", "não entendi" ou tópico envolver documento, reclamação ou situação emocional. Ao assumir: cumprimentar e informar seu nome.</div>
+    </div>
+
+    <div class="cc">
+      <div class="chd"><div class="cicn iem">📧</div><div><h3>E-mail</h3><p>Canal formal — documentos e situações complexas</p></div></div>
+      <div class="dlist">
+        <div class="ditem">Responder em até 24 horas úteis. Se precisar de mais tempo, confirmar o recebimento e informar o prazo.</div>
+        <div class="ditem">Assunto claro: "Retorno — [Assunto] | [Nome do Cliente] | [Empreendimento]".</div>
+        <div class="ditem">Estrutura: saudação → confirmação do solicitado → resposta/solução → próximos passos → despedida.</div>
+        <div class="ditem">Sempre anexar o documento na resposta (boleto, laudo, protocolo) — o cliente não deve pedir duas vezes.</div>
+        <div class="ditem">CC ou BCC ao supervisor em respostas a reclamações críticas.</div>
+        <div class="ditem">Registrar no CV CRM com resumo da resposta e número de protocolo.</div>
+      </div>
+      <div class="ddest"><strong>📝 Modelo de resposta</strong>"Olá, [Nome]. Obrigado pelo contato! Verificamos sua solicitação referente a [assunto] e [resposta]. Qualquer dúvida, estamos à disposição. [Assinatura + telefone]"</div>
+    </div>
+
+    <div class="cc">
+      <div class="chd"><div class="cicn ira">⭐</div><div><h3>Reclame Aqui</h3><p>Canal público — meta: nota 5,0 | resposta em até 24h</p></div></div>
+      <div class="dlist">
+        <div class="ditem"><strong>Responder em até 24 horas</strong> — prazo interno do Grupo Diagonal. Não aguardar o prazo máximo da plataforma.</div>
+        <div class="ditem">Tom empático, profissional e solucionador. Nunca defensivo — a resposta é pública.</div>
+        <div class="ditem">Não publicar dados pessoais na resposta (LGPD). Convidar para canal privado para detalhes.</div>
+        <div class="ditem">Reconhecer o problema antes de explicar. "Lamentamos e já estamos verificando" antes de qualquer justificativa.</div>
+        <div class="ditem">Informar ação concreta com prazo. Nunca responder sem ter algo concreto a comunicar.</div>
+        <div class="ditem">Convidar o cliente a atualizar a avaliação após resolver.</div>
+        <div class="ditem">Registrar no CRM como ocorrência "Reclame Aqui" com link e histórico de resolução.</div>
+      </div>
+      <div class="ddest"><strong>🚨 Escalar imediatamente se</strong>Menção a advogado, Procon, CAIXA, mídia ou "vou processar" → acionar supervisora antes de responder.</div>
+    </div>
+
+    <div class="cc">
+      <div class="chd"><div class="cicn icrm">📊</div><div><h3>CV CRM — Construtor de Vendas</h3><p>Sem registro, o atendimento não existe</p></div></div>
+      <div class="dlist">
+        <div class="ditem">Registrar todos os contatos: WhatsApp, e-mail, ligação, visita presencial, Reclame Aqui, portal.</div>
+        <div class="ditem">Campos obrigatórios: CPF do titular, canal de origem, data/hora, assunto, encaminhamento, prazo de retorno.</div>
+        <div class="ditem">Categoria correta: financeiro / documentação / obra / AT / pós-venda / lead House. Categoria errada = relatório errado.</div>
+        <div class="ditem">Antes de atender: consultar histórico. Saber o histórico é sinal de profissionalismo.</div>
+        <div class="ditem">Agendar follow-up com prazo quando combinado com o cliente.</div>
+        <div class="ditem">Atualizar status ao fechar: resolvido / pendente / escalado / aguardando cliente.</div>
+      </div>
+      <div class="ddest"><strong>💡 Regra de ouro</strong>Em caso de reclamação, auditoria ou judicialização, o histórico do CRM é a prova de que o atendimento foi feito dentro dos padrões. Registrar sempre.</div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════════ CHECKLISTS ═══════════════ -->
+<div class="sec" id="checklist">
+  <div class="sh"><h2>Checklists Operacionais</h2><div class="gbar"></div><p>Use durante o atendimento. Imprima ou deixe na tela como referência rápida.</p></div>
+  <div class="clgrid">
+    <div class="clc"><h3>👷 Visita à Obra — 70%</h3><div class="clist">
+      <div class="clitem"><span class="cbox"></span>Agendar com mínimo de 20 dias de antecedência</div>
+ <div class="clitem"><span class="cbox"></span>Definir quantidade de pessoas e enviar covites</div>
+      <div class="clitem"><span class="cbox"></span>Confirmar uso de EPI (capacete, colete, botina)</div>
+      <div class="clitem"><span class="cbox"></span>Alinhar roteiro com a engenharia e escolha das unidades visitadas</div>
+      <div class="clitem"><span class="cbox"></span>Apresentar itens executados conforme memorial</div>
+      <div class="clitem"><span class="cbox"></span>Explicar o que ainda será feito e prazo estimado no contrato</div>
+      <div class="clitem"><span class="cbox"></span>Registrar dúvidas do cliente durante a visita</div>
+      <div class="clitem"><span class="cbox"></span>Fotografar com o cliente (experiência emocional)</div>
+      <div class="clitem"><span class="cbox"></span>Registrar visita no CV CRM com resumo</div>
+    </div></div>
+
+    <div class="clc"><h3>🔍 Vistoria de Entrega</h3><div class="clist">
+ <div class="clitem"><span class="cbox"></span>Liberar no portal o agendamento das unidades</div>
+ <div class="clitem"><span class="cbox"></span>Enviar comunicação com orientações para o dia e agendamento</div>
+          <div class="clitem"><span class="cbox"></span>Acompanhar os resultados das vistorias</div>
+ <div class="clitem"><span class="cbox"></span>Atualizar o quadro e reagendar revistorias</div>
+      <div class="clitem"><span class="cbox"></span>Verificar nivelamento de pisos</div>
+      <div class="clitem"><span class="cbox"></span>Testar tomadas e interruptores</div>
+      <div class="clitem"><span class="cbox"></span>Acionar torneiras e descargas</div>
+      <div class="clitem"><span class="cbox"></span>Verificar esquadrias (abrir e fechar)</div>
+      <div class="clitem"><span class="cbox"></span>Checar pintura (manchas, bolhas)</div>
+      <div class="clitem"><span class="cbox"></span>Fotografar TUDO que for apontado</div>
+      <div class="clitem"><span class="cbox"></span>Assinar laudo só após pendências resolvidas</div>
+      <div class="clitem"><span class="cbox"></span>Entregar manual com explicação oral</div>
+    </div></div>
+
+    <div class="clc"><h3>🤝 Fiador — Documentação</h3><div class="clist">
+      <div class="clitem"><span class="cbox"></span>RG ou CNH (documento com foto)</div>
+      <div class="clitem"><span class="cbox"></span>CPF — consultar regularidade</div>
+      <div class="clitem"><span class="cbox"></span>Comprovante de endereço (últimos 3 meses)</div>
+      <div class="clitem"><span class="cbox"></span>Verificar nome limpo (Serasa/SPC)</div>
+      <div class="clitem"><span class="cbox"></span>Certidão de estado civil</div>
+      <div class="clitem"><span class="cbox"></span>Se casado: documentos do cônjuge também</div>
+      <div class="clitem"><span class="cbox"></span>Comprovante de renda (se exigido)</div>
+      <div class="clitem"><span class="cbox"></span>Explicar responsabilidades claramente</div>
+      <div class="clitem"><span class="cbox"></span>Registrar aprovação do fiador no CV CRM</div>
+    </div></div>
+
+    <div class="clc"><h3>🔑 Entrega de Chaves</h3><div class="clist">
+      <div class="clitem"><span class="cbox"></span>Verificar adimplência das parcelas</div>
+      <div class="clitem"><span class="cbox"></span>Confirmar: fiador aprovado OU saldo quitado OU aprovação bancária</div>
+      <div class="clitem"><span class="cbox"></span>Habite-se emitido e arquivado</div>
+      <div class="clitem"><span class="cbox"></span>Laudo de vistoria aprovado e assinado</div>
+      <div class="clitem"><span class="cbox"></span>Termo de entrega assinado</div>
+      <div class="clitem"><span class="cbox"></span>Manual do proprietário entregue + explicado</div>
+      <div class="clitem"><span class="cbox"></span>Termo de Garantia entregue</div>
+      <div class="clitem"><span class="cbox"></span>Orientar sobre restrições MCMV pós-entrega</div>
+      <div class="clitem"><span class="cbox"></span>Registrar entrega no CV CRM</div>
+    </div></div>
+
+    <div class="clc"><h3>📋 Chamado de Assistência Técnica</h3><div class="clist">
+      <div class="clitem"><span class="cbox"></span>Confirmar CPF do titular (LGPD)</div>
+      <div class="clitem"><span class="cbox"></span>Verificar prazo de garantia (tabela NBR 17170)</div>
+      <div class="clitem"><span class="cbox"></span>Solicitar fotos/vídeo do problema</div>
+      <div class="clitem"><span class="cbox"></span>Verificar se manutenção preventiva foi feita</div>
+      <div class="clitem"><span class="cbox"></span>Registrar no CRM com categoria correta</div>
+      <div class="clitem"><span class="cbox"></span>Informar prazo de resposta ao cliente</div>
+      <div class="clitem"><span class="cbox"></span>Confirmar agendamento de vistoria técnica</div>
+      <div class="clitem"><span class="cbox"></span>Atualizar cliente sobre status</div>
+    </div></div>
+
+    <div class="clc"><h3>⭐ Reclame Aqui — Protocolo</h3><div class="clist">
+      <div class="clitem"><span class="cbox"></span>Verificar histórico no CV CRM imediatamente</div>
+      <div class="clitem"><span class="cbox"></span>Consultar supervisora antes de responder</div>
+      <div class="clitem"><span class="cbox"></span>Responder em até 24 horas (prazo interno)</div>
+      <div class="clitem"><span class="cbox"></span>Não publicar dados pessoais (LGPD)</div>
+      <div class="clitem"><span class="cbox"></span>Reconhecer o problema antes de explicar</div>
+      <div class="clitem"><span class="cbox"></span>Informar ação concreta com prazo</div>
+      <div class="clitem"><span class="cbox"></span>Convidar para contato privado</div>
+      <div class="clitem"><span class="cbox"></span>Registrar no CRM como ocorrência RA</div>
+      <div class="clitem"><span class="cbox"></span>Após resolver: convidar a atualizar nota</div>
+    </div></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ GLOSSÁRIO ═══════════════ -->
+<div class="bgw"><div class="sec" id="glossario">
+  <div class="sh"><h2>Glossário</h2><div class="gbar"></div><p>Termos técnicos e siglas do dia a dia — consulte sempre que tiver dúvida sobre um conceito.</p></div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;">
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Financeiro</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">Pro soluto</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Parcelas do contrato com vencimento <em>após</em> a entrega das chaves. O cliente continua devendo à Victa mesmo depois de receber o imóvel. Exige apresentação de fiador.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">INCC</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Índice Nacional da Construção Civil. Corrige mensalmente as parcelas pagas durante a obra. Não é lucro da empresa — reflete a variação de custos do setor.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Juros de obra</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Juros cobrados pelo banco (geralmente CEF) sobre o valor já liberado para a construtora. Não é parcela do financiamento — não amortiza a dívida.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Subsídio</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Valor concedido pelo Governo Federal que é descontado do preço do imóvel. O cliente não paga de volta. Disponível nas faixas 1 e 2 do MCMV.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Repasse bancário</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Momento em que o saldo devedor com a construtora é transferido para um banco, que assume o financiamento. Ocorre na entrega ou após.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Antecipação de parcelas</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Pagamento adiantado de parcelas futuras. Sempre deve ser feito das mais antigas para as mais recentes, conforme política da empresa.</p></div>
+      </div>
+    </div>
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Programas Habitacionais</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">MCMV — Minha Casa Minha Vida</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Programa habitacional do Governo Federal que oferece subsídios e taxas de juros reduzidas para famílias de baixa e média renda comprarem o primeiro imóvel.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Entrada Moradia Ceará</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Programa estadual do Ceará que oferece R$ 20 mil para a entrada de imóveis nas faixas 1 e 2 do MCMV. Isenta também ITBI e registro. Cumulativo com subsídio federal e FGTS.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">FGTS</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Fundo de Garantia do Tempo de Serviço. Pode ser usado como entrada ou para amortizar o financiamento. O titular precisa habilitar "moradia própria" no app do FGTS.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Financiamento associativo</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Modelo em que o cliente já tem o financiamento aprovado pela Caixa antes da obra terminar. Durante a obra paga juros de obra; depois da entrega, parcelas normais.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">SFH</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Sistema Financeiro de Habitação. Linha de crédito imobiliário com juros regulados pelo governo, usado na maioria dos financiamentos do MCMV.</p></div>
+      </div>
+    </div>
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Documentos e Processo</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">Habite-se / CVCO</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Documento emitido pela prefeitura que certifica que a obra está concluída e apta para habitação. Marca o início legal dos prazos de garantia (NBR 17170).</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Memorial descritivo</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Documento técnico que especifica todos os materiais, acabamentos e equipamentos do imóvel conforme contratado. É o guia oficial da vistoria de entrega.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Confissão de dívida</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Documento em que o comprador reconhece formalmente um saldo devedor e assume novas condições de pagamento. O fiador (se pro soluto) assina junto. Tem valor jurídico.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Procuração</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Documento que autoriza terceiro a agir em nome do cliente. Deve ser reconhecida em cartório. Sem procuração, não fornecemos dados a ninguém — nem familiares (LGPD).</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">ITBI</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Imposto de Transmissão de Bens Imóveis. Pago pelo comprador ao município no momento da escritura. Zerado para clientes do Entrada Moradia Ceará.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Averbação</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Registro de atualização na matrícula do imóvel no cartório. Necessária para individualizar as unidades após o habite-se, antes da escritura definitiva.</p></div>
+      </div>
+    </div>
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Sistemas e Indicadores</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">CV CRM</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Construtor de Vendas — sistema de gestão de relacionamento com o cliente. Registra atendimentos, documentos, solicitações do portal e histórico completo de cada cliente.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">RM Totvs</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Sistema ERP utilizado para dados financeiros e cadastrais. Deve ser sincronizado com o CV CRM quando houver atualização de e-mail ou telefone do cliente.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">CSAT</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Customer Satisfaction Score — pontuação de satisfação do cliente. Medido por pesquisa enviada após atendimento no WhatsApp. Meta: 9,6.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">SLA</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Service Level Agreement — prazo máximo acordado para resposta ou resolução. SLA interno do Grupo Diagonal: 1 dia útil para todos os canais.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">NPS</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Net Promoter Score — indicador de lealdade. Mede a probabilidade de o cliente recomendar a empresa. Escala de 0 a 10; notas 9 e 10 = promotores.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">LGPD</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Lei Geral de Proteção de Dados (Lei 13.709/2018). Proíbe o compartilhamento de dados pessoais do cliente sem autorização. No atendimento: sempre confirmar CPF do titular antes de fornecer qualquer informação.</p></div>
+      </div>
+    </div>
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Garantias e Obra</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">NBR 17170:2022</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Norma ABNT que define os prazos de garantia recomendados por sistema construtivo. Em vigor desde junho/2023. Substituiu o Anexo D da NBR 15575.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Vício aparente</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Defeito visível na entrega do imóvel. Deve ser apontado e registrado no laudo de vistoria. Se não apontado na vistoria, pode perder cobertura de garantia.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Vício oculto</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Defeito que só se manifesta após algum tempo de uso. Prazo para reclamação: 5 anos (Código Civil, art. 618), mesmo após a garantia contratual.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">EPI</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Equipamento de Proteção Individual. Uso obrigatório na visita à obra: capacete, colete refletivo e botina de segurança.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Paredes de concreto em forma metálica</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Método construtivo utilizado nos empreendimentos. Pode gerar variações nas dimensões em relação ao projeto. Por isso, medições de marcenaria devem ser feitas in loco na vistoria.</p></div>
+      </div>
+    </div>
+
+    <div class="dc" style="flex-direction:column;gap:.5rem;align-items:stretch;">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);">Condomínio e Pós-entrega</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div><strong style="font-size:.85rem;color:var(--primary);">Pro soluto (pós-entrega)</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Após receber as chaves, o cliente com pro soluto continua pagando parcelas à Victa até quitar. O fiador permanece como garantidor durante esse período.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Restrição de alienação</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Período em que o cliente do MCMV não pode vender ou transferir o imóvel. Determinado pelo contrato com a Caixa. Descumprir pode gerar irregularidade no financiamento.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Assembleia de instalação</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Primeira reunião do condomínio após a entrega. Elege o síndico, aprova a administradora e define o orçamento. Geralmente organizada pela construtora.</p></div>
+        <div><strong style="font-size:.85rem;color:var(--primary);">Manual do proprietário</strong><p style="font-size:.78rem;color:var(--slate);margin-top:.15rem;">Documento obrigatório pela NBR 17170. Contém instruções de uso, manutenções preventivas e prazos de garantia. A falta de manutenção documentada anula a garantia.</p></div>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<footer>
+  <p><strong>Grupo Diagonal</strong> · Portal de Atendimento · Trilha de Hard Skills — Versão 5.0</p>
+  <p style="margin-top:.4rem;font-size:.8rem">MCMV · Entrada Moradia Ceará · Planos de Venda · Construindo com excelência do contrato ao pós-obra</p>
+</footer>
+
+<script data-cfasync="false">
+const SD=[
+  {t:"Faixa 1 MCMV",d:"Renda até R$ 3.200, subsídio até R$ 55 mil, sem juros",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 2 MCMV",d:"Renda até R$ 5.000, subsídio parcial, juros 4,75% a 7,66%",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 3 MCMV",d:"Renda até R$ 9.600, sem subsídio, teto R$ 400 mil",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 4 MCMV — Classe Média",d:"Renda até R$ 13.000, sem subsídio, teto R$ 600 mil, criada 2025",s:"MCMV",a:"mcmv"},
+  {t:"Subsídio MCMV",d:"Valor descontado do governo, não pago de volta, até R$ 55 mil faixas 1 e 2",s:"MCMV",a:"mcmv"},
+  {t:"Entrada Moradia Ceará",d:"R$ 20 mil do governo estadual para a entrada, isenta ITBI e registro, faixas 1 e 2",s:"Entrada Moradia CE",a:"entrada-moradia"},
+  {t:"Cheque Moradia Ceará",d:"Benefício estadual para construção e reforma de moradias populares no Ceará",s:"Entrada Moradia CE",a:"entrada-moradia"},
+  {t:"Requisitos Entrada Moradia CE",d:"1 ano no CE, +18 anos, 1º imóvel, renda até R$ 4.700, crédito aprovado CAIXA",s:"Entrada Moradia CE",a:"entrada-moradia"},
+  {t:"Fiador — documentação",d:"RG, CPF limpo, comprovante endereço, maior 18 anos, nome limpo, certidão civil",s:"Fiador",a:"fiador"},
+  {t:"Fiador — pro soluto",d:"Exigido para todos os clientes com parcelas vencendo após entrega das chaves (pro soluto)",s:"Fiador",a:"fiador"},
+  {t:"Fiador — responsabilidades",d:"Responde com patrimônio pelas obrigações do comprador, cônjuge assina junto",s:"Fiador",a:"fiador"},
+  {t:"Pro soluto",d:"Parcelas com vencimento após entrega das chaves — exige fiador independente do plano de venda",s:"Fiador",a:"fiador"},
+  {t:"Condição para entrega de chaves",d:"Vistoria aprovada + adimplente + fiador (se pro soluto) ou saldo quitado",s:"Fiador",a:"fiador"},
+  {t:"Vistoria obrigatória antes das chaves",d:"Cliente deve ter vistoria aprovada. Sem comparecimento: 3 notificações, depois lacre da unidade",s:"Jornada",a:"processo"},
+  {t:"Lacre da unidade",d:"Após 3 notificações sem comparecimento na vistoria, unidade é lacrada e chaves entregues formalmente",s:"Jornada",a:"processo"},
+  {t:"Planos de Venda — Associativo",d:"Banco desde o início, paga juros de obra, após entrega vira financiamento normal, mais seguro",s:"Planos de Venda",a:"vendas"},
+  {t:"Planos de Venda — Direto/Flex",d:"Paga construtora durante obra, sem juros Caixa, precisa financiar depois, maior risco",s:"Planos de Venda",a:"vendas"},
+  {t:"Juros de obra / fase de obra",d:"Cobrado durante construção, sobre valor liberado, não amortiza dívida, começa 30 dias após contrato",s:"Planos de Venda",a:"vendas"},
+  {t:"INCC — reajuste de parcelas",d:"Índice Nacional Construção Civil, reajuste mensal durante a obra, explicar sempre",s:"Planos de Venda",a:"vendas"},
+  {t:"Repasse bancário",d:"Saldo devedor vai para banco na entrega, preparar documentação 90+ dias antes",s:"Planos de Venda",a:"vendas"},
+  {t:"Visita à obra — 70%",d:"EPI, memorial descritivo, roteiro engenharia, momento emocional, registrar CRM",s:"Jornada",a:"processo"},
+  {t:"NBR 17170 — Garantias",d:"Estrutura 5 anos, impermeabilização 3 anos, hidráulica 2 anos, pintura 1 ano, louças 90 dias",s:"Garantias",a:"garantias"},
+  {t:"Perda de garantia",d:"Falta de manutenção documentada, reformas não autorizadas, mau uso",s:"Garantias",a:"garantias"},
+  {t:"Habite-se",d:"Início legal da garantia, necessário para entrega de chaves, emitido pela prefeitura",s:"Documentos",a:"docs"},
+  {t:"Termo de Confissão de Dívida",d:"Renegociação, valor jurídico, fiador assina junto, encaminhar ao jurídico",s:"Documentos",a:"docs"},
+  {t:"Procuração",d:"Sem procuração cartório não fornecer dados (LGPD), terceiros não podem obter informações",s:"Documentos",a:"docs"},
+  {t:"Declaração de Imposto de Renda",d:"Comprovação de renda, informe de pagamentos anual, declarar imóvel e juros",s:"Documentos",a:"docs"},
+  {t:"CV CRM — Construtor de Vendas",d:"Registrar todos os contatos, categorias, histórico, relatórios, follow-up",s:"Sistemas",a:"canais"},
+  {t:"WhatsApp Botmaker",d:"Quando assumir do bot, resposta 2h, linguagem, registrar CRM, meta CSAT 9,6",s:"Canais",a:"canais"},
+  {t:"Reclame Aqui",d:"Resposta em até 24h, nota 5,0, LGPD, escalar se ameaça jurídica",s:"Canais",a:"canais"},
+  {t:"CSAT",d:"Meta 9,6, pesquisa enviada após atendimento WhatsApp",s:"Indicadores",a:"indicadores"},
+  {t:"Resolução no mesmo dia",d:"Meta 80% dos atendimentos resolvidos no dia do contato",s:"Indicadores",a:"indicadores"},
+  {t:"SLA de atendimento",d:"Prazo máximo 1 dia útil para todos os canais",s:"Indicadores",a:"indicadores"},
+  {t:"Taxa de reincidência",d:"Meta máxima 18%, indica resolução incompleta se maior",s:"Indicadores",a:"indicadores"},
+  {t:"Conversão de leads House",d:"Meta 35% de conversão, rastrear no CV CRM",s:"Indicadores",a:"indicadores"},
+  {t:"FGTS",d:"Autorizar moradia própria no app, nova análise CAIXA só após 90 dias",s:"Financiamento",a:"trilha"},
+  {t:"Manual do proprietário",d:"Obrigatório NBR 17170, manutenção documentada, entregar com explicação ativa",s:"Documentos",a:"docs"},
+  {t:"Telefone — script Victa",d:"Victa Engenharia, bom dia/boa tarde! Meu nome é [nome], como posso ajudar?",s:"Canais",a:"canais"},
+  {t:"Telefone — script Diagonal",d:"Diagonal Construtora, bom dia/boa tarde! Meu nome é [nome], como posso ajudar?",s:"Canais",a:"canais"},
+  {t:"Telefone — duas empresas",d:"Identificar qual empresa o cliente pertence antes de atender — Victa ou Diagonal",s:"Canais",a:"canais"},
+  {t:"Portal de Relacionamento — solicitações",d:"Cliente abre solicitação no portal, aparece no CV CRM, atendimento responde no CRM, resposta exibida no portal",s:"Canais",a:"canais"},
+  {t:"Portal de Relacionamento — fluxo",d:"Solicitação portal → CV CRM → resposta no CRM → cliente vê no portal",s:"Canais",a:"canais"},
+  {t:"Pro soluto — glossário",d:"Parcelas vencendo após entrega das chaves, exige fiador, cliente continua pagando à Victa",s:"Glossário",a:"glossario"},
+  {t:"INCC — glossário",d:"Índice Nacional da Construção Civil, corrige parcelas mensalmente durante a obra",s:"Glossário",a:"glossario"},
+  {t:"Juros de obra — glossário",d:"Cobrado pelo banco sobre valor já liberado, não amortiza dívida",s:"Glossário",a:"glossario"},
+  {t:"Habite-se — glossário",d:"Certidão da prefeitura, início dos prazos de garantia NBR 17170",s:"Glossário",a:"glossario"},
+  {t:"LGPD — glossário",d:"Confirmação de CPF do titular antes de fornecer qualquer informação",s:"Glossário",a:"glossario"},
+  {t:"SLA — glossário",d:"Prazo máximo 1 dia útil para todos os canais de atendimento",s:"Glossário",a:"glossario"},
+  {t:"CSAT — glossário",d:"Satisfação do cliente, pesquisa pós-atendimento WhatsApp, meta 9,6",s:"Glossário",a:"glossario"},
+  {t:"NBR 17170 — glossário",d:"Norma ABNT de garantias de edificações, em vigor desde junho 2023",s:"Glossário",a:"glossario"},
+  {t:"ITBI — glossário",d:"Imposto de transmissão de bens imóveis, zerado no Entrada Moradia Ceará",s:"Glossário",a:"glossario"},
+  {t:"Memorial descritivo — glossário",d:"Documento técnico com materiais e acabamentos, guia da vistoria de entrega",s:"Glossário",a:"glossario"},
+  {t:"Vício aparente — glossário",d:"Defeito visível na entrega, deve ser apontado no laudo de vistoria",s:"Glossário",a:"glossario"},
+  {t:"Vício oculto — glossário",d:"Defeito que aparece após o uso, prazo 5 anos Código Civil art 618",s:"Glossário",a:"glossario"},
+  {t:"Restrição de alienação — glossário",d:"Período que cliente MCMV não pode vender o imóvel, definido pela Caixa",s:"Glossário",a:"glossario"},
+  {t:"Antecipação de boleto",d:"Sempre das parcelas mais antigas, aguardar ajuste INCC após virada do mês",s:"Procedimentos",a:"procedimentos"},
+  {t:"Plantas — PDF e marcenaria",d:"Apenas PDF com medidas internas, sem DWG, elétrica e hidráulica só na entrega, medir in loco",s:"Procedimentos",a:"procedimentos"},
+  {t:"Contrato — portal e físico",d:"Disponível no portal do cliente, físico retirar com Crédito Imobiliário, não aparece acionar CI",s:"Procedimentos",a:"procedimentos"},
+  {t:"Rescisão / Distrato",d:"7 dias devolução integral, após 7 dias cálculo (pago-comissão)/2, financiada distrato impossível",s:"Procedimentos",a:"procedimentos"},
+  {t:"Alyne Coelho — arrependimento",d:"alynelima [at] victa.eng.br para formalizar rescisão em até 7 dias",s:"Procedimentos",a:"procedimentos"},
+  {t:"Portal do cliente — acesso e senha",d:"Link victa.cvcrm.com.br/cliente, login CPF, senha provisória xjPnFENA, reset no CV",s:"Procedimentos",a:"procedimentos"},
+  {t:"Atualização cadastro — RM Totvs",d:"Validações Cadastrais pendente, email e telefone atualizar também no RM Totvs",s:"Procedimentos",a:"procedimentos"},
+  {t:"Agendamento de vistoria",d:"Cliente agenda no portal, azul no CV = agendado, liberar vistoria, salvar termo na pasta",s:"Procedimentos",a:"procedimentos"},
+  {t:"Visita na obra — coletiva",d:"Visitas individuais não são realizadas, apenas coletivas no momento oportuno",s:"Procedimentos",a:"procedimentos"},
+  {t:"Assistência técnica pós-entrega",d:"Atualização obra, qualidade venda, cessão, avaliar individualmente cada caso",s:"Procedimentos",a:"procedimentos"},
+];
+
+function hl(t,q){if(!q)return t;const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return t.replace(re,'<mark>$1</mark>');}
+function openSearch(){document.getElementById('so').classList.add('open');setTimeout(()=>document.getElementById('sinput').focus(),80);}
+function closeSearch(){document.getElementById('so').classList.remove('open');document.getElementById('sinput').value='';document.getElementById('sr').innerHTML='';}
+document.getElementById('sinput').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase();const c=document.getElementById('sr');
+  if(!q){c.innerHTML='';return;}
+  const r=SD.filter(d=>d.t.toLowerCase().includes(q)||d.d.toLowerCase().includes(q)||d.s.toLowerCase().includes(q)).slice(0,9);
+  if(!r.length){c.innerHTML='<div class="sempty">Nenhum resultado. Tente outra palavra.</div>';return;}
+  c.innerHTML=r.map(x=>`<div class="sres" onclick="goTo('${x.a}')"><div class="ssec">${x.s}</div><h4>${hl(x.t,this.value.trim())}</h4><p>${hl(x.d,this.value.trim())}</p></div>`).join('');
+});
+function goTo(a){closeSearch();setTimeout(()=>{const el=document.getElementById(a);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},120);}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}if(e.key==='Escape')closeSearch();});
+document.getElementById('so').addEventListener('click',function(e){if(e.target===this)closeSearch();});
+function showTab(id){document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');event.currentTarget.classList.add('active');}
+function tog(h){const b=h.nextElementSibling;const i=h.querySelector('.ti');const o=b.classList.contains('open');document.querySelectorAll('.mb').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.ti').forEach(x=>x.classList.remove('open'));if(!o){b.classList.add('open');i.classList.add('open');}}
+document.querySelectorAll('nav a').forEach(a=>{a.addEventListener('click',()=>{document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');});});
+</script>
+</body>
+</html>
