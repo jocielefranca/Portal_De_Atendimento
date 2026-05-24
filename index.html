@@ -258,6 +258,7 @@
       <a href="#vendas">Planos de Venda</a>
       <a href="#fiador">Fiador</a>
       <a href="#processo">Jornada</a>
+      <a href="#fluxo-diagonal">Fluxo Diagonal</a>
       <a href="#garantias">Garantias</a>
       <a href="#docs">Documentos</a>
       <a href="#indicadores">Indicadores</a>
@@ -275,7 +276,7 @@
 <div class="hero">
   <div class="hero-in">
     <div class="htag">⚡ Portal de Treinamento — Time do Relacionamento</div>
-    <h1>Trilha de <em> Skills</em> — Atendimento ao cliente da Construção Civil</h1>
+    <h1>Trilha de <em>Hard Skills</em> — Atendimento na Construção Civil</h1>
     <p>Capacitação completa para o time do Grupo Diagonal. Use a busca (Ctrl+K) para encontrar qualquer conteúdo rapidamente durante o atendimento.</p>
     <div class="hstats">
       <div><span class="snum">Ctrl+K</span><span class="slbl">Busca rápida</span></div>
@@ -543,62 +544,141 @@
     <!-- FAIXAS MCMV ACCORDION -->
     <div class="tm">
       <div class="mh" onclick="tog(this)">
-        <div class="mm"><div class="mn">📊</div><div class="mi"><h3>Faixas do MCMV — 2025</h3><span>4 faixas · A faixa define subsídio, juros, prazo e teto do imóvel</span></div></div>
+        <div class="mm"><div class="mn">📊</div><div class="mi"><h3>Faixas do MCMV — 2026 (atualizado abr/2026)</h3><span>4 faixas · A faixa define subsídio, juros, prazo e teto do imóvel · Fonte: Ministério das Cidades / Portaria MCid 2026</span></div></div>
         <span class="ti">▼</span>
       </div>
       <div class="mb">
+
+        <!-- Cards das faixas -->
         <div class="fgrid" style="margin-bottom:1rem">
           <div class="fc f1">
             <div class="flbl">Faixa 1</div><h3>Baixíssima Renda</h3>
             <div class="frenda">Renda até <strong>R$ 3.200</strong>/mês</div>
             <div class="fitems">
-              <div class="fitem"><strong>Juros:</strong><span>Sem juros / mínimos</span></div>
-              <div class="fitem"><strong>Parcela:</strong><span>A partir de R$ 80</span></div>
-              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k*</span></div>
-              <div class="fitem"><strong>Subsídio:</strong><span>Até R$ 55 mil</span></div>
+              <div class="fitem"><strong>Juros (N/NE):</strong><span>4% a.a. (cotista) · 4,5% (não cotista)</span></div>
+              <div class="fitem"><strong>Juros (S/SE/CO):</strong><span>4,25% a.a. (cotista) · 4,75% (não cotista)</span></div>
+              <div class="fitem"><strong>Parcela mín.:</strong><span>A partir de R$ 80/mês</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k (por localidade)</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Até R$ 55 mil (pode chegar a 95%)</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 360 meses (30 anos)</span></div>
             </div>
             <span class="sbadge ssim">✓ Subsídio máximo</span>
-            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Prioridade: mulher chefe de família, área de risco, vulnerabilidade social.</p>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Prioridade: mulher chefe de família, área de risco, vulnerabilidade social. Beneficiário não escolhe o imóvel diretamente — é alocado pelo programa.</p>
           </div>
           <div class="fc f2">
             <div class="flbl">Faixa 2</div><h3>Baixa Renda</h3>
             <div class="frenda">Renda: <strong>R$ 3.200,01 a R$ 5.000</strong></div>
             <div class="fitems">
-              <div class="fitem"><strong>Juros:</strong><span>4,75% a 7,66% a.a.</span></div>
-              <div class="fitem"><strong>Prazo:</strong><span>Até 360 meses</span></div>
-              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k*</span></div>
-              <div class="fitem"><strong>Subsídio:</strong><span>Parcial</span></div>
+              <div class="fitem"><strong>Juros (N/NE):</strong><span>4,75% a 6,5% a.a. (cotista) · até 7% (não cotista)</span></div>
+              <div class="fitem"><strong>Juros (S/SE/CO):</strong><span>5% a 6,5% a.a. (cotista) · até 7% (não cotista)</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>R$ 210k a R$ 275k (por localidade)</span></div>
+              <div class="fitem"><strong>Subsídio:</strong><span>Parcial — até R$ 55 mil</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 360 meses (30 anos)</span></div>
             </div>
             <span class="sbadge ssim">✓ Subsídio parcial</span>
-            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Composição de renda com até 3 pessoas.</p>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Subsídio varia por renda, localidade e nº de dependentes. Composição de renda com até 3 pessoas. Pode usar FGTS.</p>
           </div>
           <div class="fc f3">
             <div class="flbl">Faixa 3</div><h3>Média Renda</h3>
             <div class="frenda">Renda: <strong>R$ 5.000,01 a R$ 9.600</strong></div>
             <div class="fitems">
-              <div class="fitem"><strong>Juros:</strong><span>7,66% a 8,16% a.a.</span></div>
-              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses</span></div>
-              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 400 mil</span></div>
+              <div class="fitem"><strong>Juros:</strong><span>~7,66% a 8,16% a.a.</span></div>
+              <div class="fitem"><strong>Cotista FGTS:</strong><span>Redução de 0,5 p.p. na taxa</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 400 mil (subiu de R$ 350k)</span></div>
               <div class="fitem"><strong>Subsídio:</strong><span>Não tem</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses (35 anos)</span></div>
             </div>
             <span class="sbadge snao">✗ Sem subsídio</span>
-            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Taxas abaixo do mercado. Pode usar FGTS para amortização.</p>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Taxas abaixo do mercado. Pode usar FGTS para entrada ou amortização. Imóvel novo ou usado (usado: só em municípios &lt;50 mil hab.).</p>
           </div>
           <div class="fc f4">
             <div class="flbl">Faixa 4 — Classe Média</div><h3>Classe Média</h3>
             <div class="frenda">Renda: <strong>R$ 9.600,01 a R$ 13.000</strong></div>
             <div class="fitems">
-              <div class="fitem"><strong>Juros:</strong><span>Até 10,50% a.a.</span></div>
-              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses</span></div>
-              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 600 mil</span></div>
+              <div class="fitem"><strong>Juros:</strong><span>Até 10% a.a. (nominal)</span></div>
+              <div class="fitem"><strong>Entrada mínima:</strong><span>20% do valor do imóvel</span></div>
+              <div class="fitem"><strong>Imóvel:</strong><span>Até R$ 600 mil (subiu de R$ 500k)</span></div>
               <div class="fitem"><strong>Subsídio:</strong><span>Não tem</span></div>
+              <div class="fitem"><strong>Prazo:</strong><span>Até 420 meses (35 anos)</span></div>
             </div>
             <span class="sbadge snao">✗ Sem subsídio</span>
-            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Criada em 2025. Imóveis novos: até 80% financiável.</p>
+            <p style="font-size:.72rem;color:var(--slate);margin-top:.5rem">Criada abr/2025, ampliada abr/2026. Benefício: acesso ao SFH com taxa controlada abaixo do mercado. FGTS pode ser usado como entrada (mín. 3 anos de contribuição).</p>
           </div>
         </div>
-        <div class="al ai"><span class="aico">💡</span><div class="atxt"><h4>O que é subsídio?</h4><p>Valor que o Governo Federal desconta do imóvel — o cliente não paga de volta. Nas faixas 1 e 2 pode chegar a R$ 55 mil, reduzindo diretamente o saldo financiado e as parcelas.</p></div></div>
-        <div class="al aw"><span class="aico">⚠️</span><div class="atxt"><h4>Composição de renda e FGTS</h4><p>Compor renda com até 3 pessoas. Para usar FGTS: habilitar autorização de "moradia própria" no app. Após envio de documentação à CAIXA: nova avaliação só após 90 dias.</p></div></div>
+
+        <!-- Cotista FGTS -->
+        <div style="background:#E8F5ED;border-radius:10px;padding:1rem 1.25rem;margin-bottom:.75rem;border-left:3px solid var(--green);">
+          <div style="font-size:.75rem;font-weight:700;color:var(--primary);margin-bottom:.4rem;">🏦 Cotista vs. Não Cotista do FGTS — por que isso importa?</div>
+          <p style="font-size:.78rem;color:var(--slate);line-height:1.6;margin-bottom:.5rem;"><strong>Cotista do FGTS</strong> é quem possui conta vinculada com saldo há pelo menos <strong>3 anos</strong> de contribuição (trabalhando com carteira assinada). Cotistas têm direito a uma <strong>redução de 0,5 ponto percentual na taxa de juros</strong> do MCMV — o que pode significar dezenas de milhares de reais a menos no total pago.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+            <div style="background:var(--white);border-radius:7px;padding:.55rem .75rem;font-size:.76rem;"><strong style="color:var(--green);display:block;margin-bottom:.15rem;">✅ Cotista FGTS</strong><span style="color:var(--slate);">3+ anos de conta ativa · Taxa reduzida em 0,5 p.p. · Pode usar saldo como entrada ou amortização</span></div>
+            <div style="background:var(--white);border-radius:7px;padding:.55rem .75rem;font-size:.76rem;"><strong style="color:var(--red);display:block;margin-bottom:.15rem;">⚠️ Não Cotista</strong><span style="color:var(--slate);">Menos de 3 anos de contribuição · Taxa um pouco maior · Ainda pode ter boas condições nas faixas 1 e 2</span></div>
+          </div>
+        </div>
+
+        <!-- Comparativo de economia -->
+        <div style="background:#FEF9E7;border-radius:10px;padding:1rem 1.25rem;margin-bottom:.75rem;border-left:3px solid #F39C12;">
+          <div style="font-size:.75rem;font-weight:700;color:var(--primary);margin-bottom:.4rem;">📉 Por que a faixa importa tanto? Comparativo de custo total</div>
+          <p style="font-size:.77rem;color:var(--slate);margin-bottom:.55rem;">Imóvel de R$ 200.000 financiado em 35 anos:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+            <div style="background:var(--white);border-radius:7px;padding:.55rem .85rem;font-size:.76rem;flex:1;min-width:150px;"><strong style="color:var(--green);display:block;">MCMV Faixa 1 (~4,5%)</strong><span style="color:var(--slate);">Total ~R$ 360 mil · Parcela ~R$ 860</span></div>
+            <div style="background:var(--white);border-radius:7px;padding:.55rem .85rem;font-size:.76rem;flex:1;min-width:150px;"><strong style="color:#E67E22;display:block;">MCMV Faixa 3 (~8%)</strong><span style="color:var(--slate);">Total ~R$ 530 mil · Parcela ~R$ 1.260</span></div>
+            <div style="background:var(--white);border-radius:7px;padding:.55rem .85rem;font-size:.76rem;flex:1;min-width:150px;"><strong style="color:var(--red);display:block;">Mercado convencional (~12%)</strong><span style="color:var(--slate);">Total ~R$ 780 mil · Parcela ~R$ 1.860</span></div>
+          </div>
+          <p style="font-size:.72rem;color:var(--muted);margin-top:.5rem;">* Valores ilustrativos. Sempre orientar o cliente a simular na Caixa Econômica Federal.</p>
+        </div>
+
+        <div class="al ai"><span class="aico">💡</span><div class="atxt"><h4>O que é subsídio?</h4><p>Valor que o Governo Federal desconta do preço do imóvel — o cliente <strong>não paga de volta</strong>. Nas faixas 1 e 2 pode chegar a R$ 55 mil, reduzindo diretamente o saldo financiado e as parcelas mensais. É como se o governo pagasse uma parte do imóvel pelo cliente.</p></div></div>
+        <div class="al aw"><span class="aico">⚠️</span><div class="atxt"><h4>Composição de renda e FGTS</h4><p>Compor renda com até 3 pessoas. Para usar FGTS: habilitar autorização de "moradia própria" no app do FGTS. Após envio de documentação à CAIXA: nova avaliação só após 90 dias. Cotista com 3+ anos tem taxa reduzida em 0,5 p.p.</p></div></div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:.75rem;padding:.5rem .75rem;background:var(--cream);border-radius:6px;">📌 <strong>Fonte:</strong> Portaria MCid nº 399/2025 e atualizações de abr/2026 aprovadas pelo Conselho Curador do FGTS e regulamentadas pelo Ministério das Cidades. Operação iniciada pela Caixa Econômica Federal e Banco do Brasil em 22/04/2026. Consulte sempre o simulador oficial em <strong>gov.br/minhacasaminhavida</strong> para condições exatas.</div>
+      </div>
+    </div>
+
+    <!-- ESCRITURA ACCORDION -->
+    <div class="tm">
+      <div class="mh" onclick="tog(this)">
+        <div class="mm"><div class="mn">📜</div><div class="mi"><h3>Escritura — O que é e por que o cliente precisa saber</h3><span>Documento essencial · Transfere a propriedade · Registrada em cartório</span></div></div>
+        <span class="ti">▼</span>
+      </div>
+      <div class="mb">
+        <div class="si">
+
+          <div class="s-item"><span class="sic">📋</span><div class="sc2">
+            <h4>O que é a escritura?</h4>
+            <p>A escritura é o <strong>documento jurídico que transfere oficialmente a propriedade de um imóvel</strong> do vendedor para o comprador. É lavrada (elaborada e assinada) em um cartório de notas e registrada no cartório de registro de imóveis. Sem escritura registrada, o comprador não é juridicamente o dono do imóvel — mesmo que tenha pago tudo.</p>
+          </div></div>
+
+          <div class="s-item"><span class="sic">🏦</span><div class="sc2">
+            <h4>E no financiamento bancário — tem escritura?</h4>
+            <p>Quando o imóvel é financiado pela Caixa ou outro banco, o documento equivalente é o <strong>contrato de financiamento com alienação fiduciária</strong> — que já tem força de escritura pública e é registrado diretamente no cartório de imóveis. Não há escritura separada nesse caso: o próprio contrato do banco registra a transferência e a garantia ao credor. A escritura "tradicional" é emitida somente quando o financiamento é quitado.</p>
+          </div></div>
+
+          <div class="s-item"><span class="sic">📑</span><div class="sc2">
+            <h4>Escritura vs. Contrato de Compra e Venda vs. Matrícula</h4>
+            <div style="display:flex;flex-direction:column;gap:.4rem;margin-top:.3rem;">
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;border-left:2px solid var(--gold);"><strong style="color:var(--primary);">Contrato de Compra e Venda</strong> — documento inicial que formaliza o acordo entre as partes. Não transfere a propriedade sozinho.</div>
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;border-left:2px solid #2980B9;"><strong style="color:var(--primary);">Escritura Pública</strong> — lavrada no cartório de notas. Transfere a propriedade, mas só vale juridicamente quando registrada na matrícula.</div>
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;border-left:2px solid var(--green);"><strong style="color:var(--primary);">Matrícula do Imóvel</strong> — "certidão de nascimento" do imóvel. Documento no cartório de registro de imóveis que reúne todo o histórico: proprietários, ônus, penhoras, hipotecas. O registro da escritura na matrícula é o que torna a propriedade oficial e pública.</div>
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;border-left:2px solid #8E44AD;"><strong style="color:var(--primary);">Alienação Fiduciária (financiamento)</strong> — o imóvel fica em nome do banco como garantia até a quitação. Ao quitar, o banco emite o Termo de Quitação e a alienação é cancelada na matrícula — aí o cliente fica com a propriedade plena.</div>
+            </div>
+          </div></div>
+
+          <div class="s-item"><span class="sic">💸</span><div class="sc2">
+            <h4>Custos da escritura — o que o cliente paga</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem;">
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;flex:1;min-width:180px;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">ITBI</strong>Imposto sobre Transmissão de Bens Imóveis. Cobrado pelo município. Geralmente entre 2% e 3% do valor do imóvel. <em>No MCMV faixas 1 e 2 via Entrada Moradia CE: isento.</em></div>
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;flex:1;min-width:180px;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Taxa do Cartório de Notas</strong>Emolumentos pela lavratura da escritura. Valor varia por estado e pelo valor do imóvel. Em financiamentos bancários, esse custo não existe (o contrato substitui).</div>
+              <div style="background:var(--cream);border-radius:7px;padding:.55rem .85rem;font-size:.78rem;flex:1;min-width:180px;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Taxa de Registro</strong>Emolumentos do cartório de registro de imóveis para registrar a escritura/contrato na matrícula. Também varia por estado e valor do imóvel. <em>No Entrada Moradia CE: isento.</em></div>
+            </div>
+          </div></div>
+
+          <div class="s-item"><span class="sic">🗣️</span><div class="sc2">
+            <h4>Como explicar ao cliente de forma simples</h4>
+            <p style="font-size:.82rem;font-style:italic;color:var(--slate);background:var(--cream);border-radius:8px;padding:.75rem 1rem;border-left:3px solid var(--gold);line-height:1.65;">"A escritura é o documento que prova legalmente que o imóvel é seu. Sem ela registrada no cartório, você não é o dono oficial, mesmo tendo pago tudo. No financiamento pela Caixa, o contrato bancário já faz esse papel — a escritura definitiva sai quando você quitar o financiamento."</p>
+          </div></div>
+
+        </div>
+        <div class="al ai"><span class="aico">📌</span><div class="atxt"><h4>Dúvida frequente: "Quando recebo minha escritura?"</h4><p>No MCMV com financiamento bancário: o cliente recebe o <strong>contrato de financiamento registrado</strong> (que já vale como escritura durante o financiamento). A <strong>escritura definitiva</strong> é emitida somente após a <strong>quitação total</strong> do financiamento com a Caixa. Isso pode levar 20, 30 anos — é normal e previsto em lei.</p></div></div>
       </div>
     </div>
 
@@ -772,6 +852,604 @@
     </div>
   </div>
 </div></div>
+
+<!-- ═══════════════ FLUXO DIAGONAL — MODELO A PREÇO DE CUSTO ═══════════════ -->
+<div class="sec" id="fluxo-diagonal">
+  <div class="sh">
+    <h2>Como Funciona o Modelo Diagonal — Condomínio a Preço de Custo</h2>
+    <div class="gbar"></div>
+    <p>Entenda o fluxo completo: da prospecção ao pós-entrega, e como funciona o modelo financeiro que diferencia a Diagonal no mercado.</p>
+  </div>
+
+  <!-- Explicação do modelo -->
+  <div style="background:linear-gradient(135deg,#1B3A2D,#234D38);border-radius:16px;padding:1.75rem 2rem;margin-bottom:1.5rem;color:#fff;">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#A8EFC8;padding:.28rem .9rem;border-radius:20px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem;">🏗️ O que é Preço de Custo?</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.6rem;color:#fff;">O cliente não paga lucro de incorporadora — paga apenas o custo real da obra</h3>
+    <p style="font-size:.88rem;line-height:1.7;opacity:.85;max-width:820px;">No modelo Diagonal, os clientes se associam em grupo e constroem o empreendimento juntos. Não há incorporadora lucrando sobre o imóvel: cada condômino paga exatamente sua fração do custo de construção. A Diagonal é <strong style="color:#A8EFC8;">remunerada pela taxa administrativa</strong> — como se fosse paga para cuidar, coordenar e garantir todo o processo construtivo em nome do grupo. Isso permite imóveis de alto padrão a preços significativamente menores que o mercado convencional.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.85rem;margin-top:1.25rem;">
+      <div style="background:rgba(255,255,255,.09);border-radius:10px;padding:1rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#A8EFC8;margin-bottom:.35rem;">💰 Sem lucro de incorporadora</div>
+        <div style="font-size:.82rem;line-height:1.55;opacity:.85;">O grupo paga apenas o custo real da obra. A Diagonal recebe taxa administrativa pela gestão — não margem sobre o imóvel.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.09);border-radius:10px;padding:1rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#A8EFC8;margin-bottom:.35rem;">👥 Modelo associativo</div>
+        <div style="font-size:.82rem;line-height:1.55;opacity:.85;">Clientes formam um grupo condominial e assumem o empreendimento coletivamente. Decisões importantes são tomadas em assembleia.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.09);border-radius:10px;padding:1rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#A8EFC8;margin-bottom:.35rem;">📊 Transparência total</div>
+        <div style="font-size:.82rem;line-height:1.55;opacity:.85;">Prestação de contas periódica com relatórios de obra avaliados por fiscal independente contratado pelo próprio grupo.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.09);border-radius:10px;padding:1rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#A8EFC8;margin-bottom:.35rem;">⏳ Relacionamento longo</div>
+        <div style="font-size:.82rem;line-height:1.55;opacity:.85;">Da reserva à pós-entrega: mínimo 5 a 8 anos de jornada conjunta entre o grupo e a Diagonal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O que o cliente paga + governança -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+
+    <!-- Custos -->
+    <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;">
+      <div style="background:var(--primary);padding:.85rem 1.25rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8EFC8;margin-bottom:.2rem;">💸 O que o cliente paga — e o que é cada coisa</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.7);">Todos os custos são reais e transparentes — nenhum tem margem embutida</div>
+      </div>
+      <div style="padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.75rem;">
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid var(--gold);">
+          <div style="font-size:.78rem;font-weight:700;color:var(--primary);margin-bottom:.2rem;">🏚️ Terreno</div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">O grupo adquire coletivamente o terreno onde o empreendimento será erguido. Cada condômino paga sua fração proporcional. O terreno é do grupo — não da Diagonal.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid #2980B9;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--primary);margin-bottom:.2rem;">📋 Outorga</div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Taxa cobrada pelo poder público (prefeitura) pelo direito de construir acima do coeficiente básico de aproveitamento do terreno. É um custo legal obrigatório rateado entre os condôminos.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid var(--green);">
+          <div style="font-size:.78rem;font-weight:700;color:var(--primary);margin-bottom:.2rem;">🏗️ Construção</div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">O custo direto da execução da obra: mão de obra, materiais, fornecedores e instalações. Pago em parcelas mensais e reforços semestrais, reajustadas pelo INCC. É o maior componente do valor total.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid #8E44AD;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--primary);margin-bottom:.2rem;">🎨 Ambientação (Fundo de Decoração)</div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Custo do mobiliário, decoração e acabamento das áreas comuns: piscina, salão de festas, portaria, academia, jardins, etc. O padrão é deliberado em assembleia pelo grupo.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid #E67E22;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--primary);margin-bottom:.2rem;">🛠️ Taxa Administrativa (Diagonal)</div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Como a Diagonal é remunerada: uma taxa pela gestão, coordenação técnica, administrativa e jurídica de todo o processo construtivo. É o "pagamento pelo serviço de cuidar de tudo" — não há lucro sobre o imóvel.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Governança -->
+    <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;">
+      <div style="background:#1A2B3C;padding:.85rem 1.25rem;">
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8D4F5;margin-bottom:.2rem;">🏛️ Governança do Empreendimento</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.7);">Quem representa e fiscaliza o grupo durante toda a obra</div>
+      </div>
+      <div style="padding:1rem 1.25rem;display:flex;flex-direction:column;gap:.75rem;">
+
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid var(--gold);">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem;">
+            <span style="font-size:1rem;">🎖️</span>
+            <div style="font-size:.78rem;font-weight:700;color:var(--primary);">Síndico do Grupo</div>
+            <span style="background:var(--gold-pale);color:#7A5520;font-size:.65rem;font-weight:700;padding:.12rem .5rem;border-radius:10px;">Eleito na 1ª assembleia</span>
+          </div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Condômino eleito pelo grupo para ser o representante oficial junto à Diagonal. Participa das reuniões de obra, assina documentos em nome do grupo e tem poder de deliberação nas decisões do empreendimento.</div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid #2980B9;">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem;">
+            <span style="font-size:1rem;">👥</span>
+            <div style="font-size:.78rem;font-weight:700;color:var(--primary);">Comissão de Representantes</div>
+            <span style="background:#EAF4FB;color:#1A5276;font-size:.65rem;font-weight:700;padding:.12rem .5rem;border-radius:10px;">Mandato de 1 ano</span>
+          </div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Grupo de condôminos eleitos em assembleia para acompanhar, deliberar e fiscalizar o andamento do empreendimento em conjunto com o síndico. O mandato é de <strong>1 ano</strong>, renovável por votação. A comissão recebe os relatórios de obra e os pareceres do fiscal independente.</div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:9px;padding:.75rem 1rem;border-left:3px solid #8E44AD;">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem;">
+            <span style="font-size:1rem;">🔬</span>
+            <div style="font-size:.78rem;font-weight:700;color:var(--primary);">Fiscal Independente da Obra</div>
+            <span style="background:#F5E8F5;color:#6C3483;font-size:.65rem;font-weight:700;padding:.12rem .5rem;border-radius:10px;">Contratado pelo grupo</span>
+          </div>
+          <div style="font-size:.77rem;color:var(--slate);line-height:1.55;">Engenheiro ou empresa especializada <strong>contratada pelo próprio grupo condominial</strong> (não pela Diagonal) para fiscalizar a construção de forma independente. Avalia os relatórios de acompanhamento de obra emitidos pela Diagonal, realiza visitas ao canteiro e emite <strong>pareceres técnicos</strong> direcionados à comissão de representantes. É a garantia de um olhar neutro sobre a qualidade e o avanço da obra.</div>
+        </div>
+
+        <div class="al ai" style="margin:0">
+          <span class="aico">📋</span>
+          <div class="atxt">
+            <h4>Fluxo de prestação de contas</h4>
+            <p>Diagonal emite relatório de obra → Fiscal independente avalia e visita o canteiro → Fiscal emite parecer técnico → Comissão de representantes analisa → Decisões são levadas à assembleia do grupo quando necessário.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Personalizações -->
+  <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="background:linear-gradient(90deg,#5B2D8E,#8E44AD);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.75rem;">
+      <span style="font-size:1.2rem;">🎨</span>
+      <div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#D7A8F5;margin-bottom:.1rem;">Personalizações — Decisão Coletiva</div>
+        <div style="font-size:.9rem;font-weight:600;color:#fff;">Acabamentos, áreas de lazer e opções de entrega</div>
+      </div>
+    </div>
+    <div style="padding:1.25rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+      <div>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8E44AD;margin-bottom:.5rem;">O que pode ser personalizado</div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <div style="display:flex;gap:.5rem;font-size:.79rem;color:var(--slate)"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Escolha de revestimentos e pisos da unidade</div>
+          <div style="display:flex;gap:.5rem;font-size:.79rem;color:var(--slate)"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Louças e metais sanitários</div>
+          <div style="display:flex;gap:.5rem;font-size:.79rem;color:var(--slate)"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Padrão de pintura interna</div>
+          <div style="display:flex;gap:.5rem;font-size:.79rem;color:var(--slate)"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Configuração de piscinas e áreas de lazer</div>
+          <div style="display:flex;gap:.5rem;font-size:.79rem;color:var(--slate)"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Padrão de ambientação das áreas comuns</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8E44AD;margin-bottom:.5rem;">Opção Shell</div>
+        <div style="font-size:.79rem;color:var(--slate);line-height:1.6;">Alguns empreendimentos oferecem a opção <strong>shell</strong>: entrega da unidade sem acabamento interno, permitindo que o condômino execute por conta própria conforme seu gosto e orçamento — desde que aprovado pelo regimento do grupo.</div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-bottom:.5rem;">⚠️ Regra importante</div>
+        <div style="font-size:.79rem;color:var(--slate);line-height:1.6;">Nenhuma personalização é decidida unilateralmente. <strong>Tudo é deliberado em assembleia</strong> pelo grupo condominial. O síndico e a comissão de representantes conduzem as votações e formalizam as decisões. O cliente que quiser algo diferente do padrão aprovado precisa levar à assembleia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGE + Deliberações da Comissão -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+
+    <!-- AGE -->
+    <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;">
+      <div style="background:linear-gradient(90deg,#1A4A7A,#2980B9);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.75rem;">
+        <span style="font-size:1.2rem;">🏛️</span>
+        <div>
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8D4F5;margin-bottom:.1rem;">AGE — Assembleia Geral Extraordinária</div>
+          <div style="font-size:.9rem;font-weight:600;color:#fff;">Quando todos os condôminos são convocados</div>
+        </div>
+      </div>
+      <div style="padding:1.1rem 1.25rem;">
+        <p style="font-size:.79rem;color:var(--slate);line-height:1.6;margin-bottom:.9rem;">A AGE é convocada quando há decisões relevantes que exigem a participação de <strong>todo o grupo condominial</strong> — não apenas da comissão de representantes. É o momento de maior transparência e democracia do empreendimento.</p>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#2980B9;margin-bottom:.6rem;">Pautas típicas de uma AGE</div>
+        <div style="display:flex;flex-direction:column;gap:.38rem;">
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Apresentação de novos valores de construção não previstos no orçamento inicial</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Deliberações sobre personalizações das unidades ou áreas comuns</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Apresentação estruturada do avanço físico e financeiro da obra</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Eleição ou renovação do síndico e da comissão de representantes</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Chamadas de capital extraordinárias — aportes não previstos</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Questões jurídicas ou contratuais que impactam o grupo</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:#2980B9;font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Aprovação da prestação de contas periódica do empreendimento</div>
+        </div>
+        <div class="al ai" style="margin-top:.9rem;margin-bottom:0;">
+          <span class="aico">📌</span>
+          <div class="atxt"><h4>Como funciona a convocação</h4><p>A convocação é feita pela Diagonal e/ou pela comissão de representantes, com antecedência e pauta definida. Todos os condôminos têm direito a voto. Decisões aprovadas em AGE são vinculantes para todo o grupo.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deliberações da Comissão -->
+    <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;">
+      <div style="background:linear-gradient(90deg,#1B5E38,#27AE60);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.75rem;">
+        <span style="font-size:1.2rem;">⚖️</span>
+        <div>
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8EFC8;margin-bottom:.1rem;">Deliberações da Comissão de Representantes</div>
+          <div style="font-size:.9rem;font-weight:600;color:#fff;">O que passa pela aprovação da comissão</div>
+        </div>
+      </div>
+      <div style="padding:1.1rem 1.25rem;">
+        <p style="font-size:.79rem;color:var(--slate);line-height:1.6;margin-bottom:.9rem;">Após a formação do grupo e constituição da comissão, diversas solicitações dos condôminos <strong>não podem ser decididas unilateralmente pela Diagonal</strong> — precisam de aprovação da comissão antes de serem implementadas. O atendimento deve saber disso para gerenciar a expectativa do cliente corretamente.</p>
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:.6rem;">O que passa obrigatoriamente pela comissão</div>
+        <div style="display:flex;flex-direction:column;gap:.38rem;">
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Concessão de descontos sobre valores do empreendimento</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Isenção de juros e/ou multa por inadimplência</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Negociações e reparcelamentos de dívidas do condômino</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Adaptações no projeto que impactem custos ou cronograma</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Aprovação de personalizações fora do padrão definido em assembleia</div>
+          <div style="display:flex;gap:.6rem;align-items:flex-start;font-size:.78rem;color:var(--slate);"><span style="color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem;">→</span> Exceções contratuais que beneficiem um condômino individualmente</div>
+        </div>
+        <div class="al aw" style="margin-top:.9rem;margin-bottom:0;">
+          <span class="aico">⚠️</span>
+          <div class="atxt"><h4>Como orientar o cliente</h4><p>Se o cliente pedir desconto, isenção ou negociação especial, explique que a Diagonal não decide sozinha — a solicitação precisa ser avaliada e aprovada pela comissão de representantes, que representa todos os condôminos. Registre no CRM e dê retorno com o resultado.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Orçamentos -->
+  <div style="background:var(--white);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.5rem;">
+    <div style="background:linear-gradient(90deg,#7D4200,#E67E22);padding:.85rem 1.5rem;display:flex;align-items:center;gap:.75rem;">
+      <span style="font-size:1.2rem;">📊</span>
+      <div>
+        <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#FFD8A8;margin-bottom:.1rem;">Orçamento Paramétrico → Orçamento Executivo</div>
+        <div style="font-size:.9rem;font-weight:600;color:#fff;">Como os valores da obra são definidos e evoluem ao longo do projeto</div>
+      </div>
+    </div>
+    <div style="padding:1.25rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;">
+          <div style="width:28px;height:28px;border-radius:50%;background:#E67E22;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0;">1</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--primary);">Orçamento Paramétrico</div>
+          <span style="background:#FEF3CD;color:#7D5400;font-size:.65rem;font-weight:700;padding:.12rem .5rem;border-radius:10px;">Início do projeto</span>
+        </div>
+        <p style="font-size:.78rem;color:var(--slate);line-height:1.6;margin-bottom:.65rem;">Elaborado no início do projeto para avaliar a <strong>viabilidade econômica</strong> do empreendimento. Usa estimativas de custo por metro quadrado com base em projetos similares — sem detalhamento completo de projetos, materiais ou fornecedores.</p>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Base para definir o preço de entrada e o fluxo de pagamentos inicial</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Menos preciso — trabalha com faixas e estimativas</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Apresentado ao grupo na fase de prospecção e formação</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Sujeito a revisão quando o executivo ficar pronto</div>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#A8EFC8;flex-shrink:0;">2</div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--primary);">Orçamento Executivo</div>
+          <span style="background:#E8F5ED;color:#1B5E38;font-size:.65rem;font-weight:700;padding:.12rem .5rem;border-radius:10px;">Após projetos aprovados</span>
+        </div>
+        <p style="font-size:.78rem;color:var(--slate);line-height:1.6;margin-bottom:.65rem;">Elaborado após a aprovação dos projetos técnicos completos (arquitetônico, estrutural, elétrico, hidráulico). É o orçamento <strong>detalhado e mais próximo da realidade</strong>, com composição de custos por item, cotações de fornecedores e cronograma físico-financeiro.</p>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Apresentado ao grupo em AGE — com todos os detalhes aprofundados</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Pode gerar ajuste no fluxo de pagamentos se diferir do paramétrico</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Avaliado pelo fiscal independente e pela comissão de representantes</div>
+          <div style="display:flex;gap:.5rem;font-size:.77rem;color:var(--slate);"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Referência oficial para controle de custos durante toda a obra</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="padding:0 1.5rem 1.25rem;">
+      <div class="al aw" style="margin:0;">
+        <span class="aico">💬</span>
+        <div class="atxt">
+          <h4>Como explicar ao cliente quando ele questionar variação de valores</h4>
+          <p>Explique que o valor apresentado no início era baseado no <strong>orçamento paramétrico</strong> — uma estimativa de viabilidade. Com o avanço dos projetos, o <strong>orçamento executivo</strong> detalha os custos reais e pode gerar ajustes no fluxo de pagamento. Essa atualização é apresentada em AGE com toda a documentação e justificativa técnica, e avaliada pelo fiscal independente do grupo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abas de fluxo -->
+  <div class="tw" id="fluxo-tabs">
+    <div class="tn">
+      <button class="tbtn active" onclick="showFluxoTab('ft-jornada', this)">🗺️ Jornada do Cliente</button>
+      <button class="tbtn" onclick="showFluxoTab('ft-pagamentos', this)">💳 Fluxo de Pagamentos</button>
+      <button class="tbtn" onclick="showFluxoTab('ft-departamentos', this)">🏢 Quem faz o quê?</button>
+    </div>
+
+    <!-- ABA 1 — JORNADA DO CLIENTE -->
+    <div id="ft-jornada" class="tp active">
+      <p style="font-size:.83rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.6;">O fluxo abaixo mostra as <strong>grandes fases da jornada</strong> de um cliente Diagonal, da prospecção inicial até o pós-entrega e o próximo projeto.</p>
+      <div style="overflow-x:auto;">
+        <div style="display:flex;gap:0;min-width:900px;position:relative;">
+
+          <!-- Linha de conexão de fundo -->
+          <div style="position:absolute;top:52px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));opacity:.25;border-radius:2px;z-index:0;"></div>
+
+          <!-- FASE 1 — PROSPECÇÃO -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#E8F5ED;border-radius:10px;padding:.7rem .6rem;border-top:3px solid var(--gold);margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:.3rem;">Prospecção</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--gold);">🔍 Identificação de Investidores</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--gold);">📞 1º Contato</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--gold);">📊 Apresentação do Projeto</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--gold);">✅ Análise de Viabilidade</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Reserva de Unidade →</div>
+          </div>
+
+          <!-- FASE 2 — FORMAÇÃO DO GRUPO -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#E8F0FB;border-radius:10px;padding:.7rem .6rem;border-top:3px solid #2980B9;margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#2980B9;margin-bottom:.3rem;">Formação do Grupo</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #2980B9;">📋 Reserva de Unidade</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #2980B9;">🤝 Início Pagamento Entrada/Desenvolvedores</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #2980B9;">📝 Assinatura de Contrato</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #2980B9;">💰 Formação de 70% do Grupo</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Contrato assinado →</div>
+          </div>
+
+          <!-- FASE 3 — PRÉ-CONSTRUÇÃO -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#F5E8F5;border-radius:10px;padding:.7rem .6rem;border-top:3px solid #8E44AD;margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#8E44AD;margin-bottom:.3rem;">Pré-Construção</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #8E44AD;">📐 Aprovações Técnicas</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #8E44AD;">🏗️ Integralização do Terreno</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #8E44AD;">💳 Parcelas Intermediárias</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #8E44AD;">📊 Orçamento Executivo</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Lançamento Oficial →</div>
+          </div>
+
+          <!-- FASE 4 — CONSTRUÇÃO -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#E8F5ED;border-radius:10px;padding:.7rem .6rem;border-top:3px solid var(--green);margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin-bottom:.3rem;">Construção</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--green);">🧱 Parcelas Mensais de Obra</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--green);">📅 Reforços Semestrais</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--green);">🎨 Customizações (2ª fase)</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--green);">📞 Chamadas de Capital</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Acompanhamento periódico →</div>
+          </div>
+
+          <!-- FASE 5 — FINALIZAÇÃO -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#FFF8E1;border-radius:10px;padding:.7rem .6rem;border-top:3px solid #F39C12;margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#E67E22;margin-bottom:.3rem;">Finalização da Obra</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #F39C12;">🏁 Parcela Final de Obra</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #F39C12;">🎨 Fundo Decoração / Áreas Comuns</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #F39C12;">📃 Habite-se + Docs</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Vistoria e entrega →</div>
+          </div>
+
+          <!-- FASE 6 — ENTREGA -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#E8F0FB;border-radius:10px;padding:.7rem .6rem;border-top:3px solid var(--blue);margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);margin-bottom:.3rem;">Entrega</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--blue);">🔍 Vistoria</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--blue);">🔑 Habite-se + Liberação Final</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--blue);">💰 Fundo de Reserva Inicial</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid var(--blue);">🏠 1ª Taxa de Condomínio</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Pós-entrega →</div>
+          </div>
+
+          <!-- FASE 7 — PÓS-ENTREGA -->
+          <div style="flex:1;min-width:0;padding:.5rem .4rem;position:relative;z-index:1;">
+            <div style="background:#F5E8F5;border-radius:10px;padding:.7rem .6rem;border-top:3px solid #C0392B;margin-bottom:.7rem;">
+              <div style="font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#C0392B;margin-bottom:.3rem;">Pós-Entrega</div>
+              <div style="display:flex;flex-direction:column;gap:.3rem;">
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #C0392B;">🔧 Assistência Técnica</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #C0392B;">📋 Follow-up</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #C0392B;">🏗️ Indicação p/ Próximo Projeto</div>
+                <div style="background:var(--white);border-radius:6px;padding:.4rem .5rem;font-size:.72rem;font-weight:600;color:var(--primary);border-left:2px solid #C0392B;">💰 Reforços Pendentes</div>
+              </div>
+            </div>
+            <div style="text-align:center;font-size:.68rem;color:var(--muted);">Ciclo completo ✓</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Legenda de departamentos -->
+      <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--cream);border-radius:10px;border:1px solid var(--border);">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:.65rem;">🏢 Equipes envolvidas por fase</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.75rem;">
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#2D8A4E;display:inline-block;flex-shrink:0;"></span>Comercial</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#2980B9;display:inline-block;flex-shrink:0;"></span>Financeiro</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#8E44AD;display:inline-block;flex-shrink:0;"></span>Engenharia</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#E67E22;display:inline-block;flex-shrink:0;"></span>Gestão de Obras</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#C0392B;display:inline-block;flex-shrink:0;"></span>Atendimento / Relacionamento</div>
+          <div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--slate);"><span style="width:10px;height:10px;border-radius:50%;background:#27AE60;display:inline-block;flex-shrink:0;"></span>Jurídico</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 2 — FLUXO DE PAGAMENTOS -->
+    <div id="ft-pagamentos" class="tp">
+      <p style="font-size:.83rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.6;">O fluxo financeiro do condomínio a preço de custo é dividido em <strong>eventos de pagamento</strong> distribuídos ao longo de toda a obra. Ao contrário de incorporadoras convencionais, não há margem de lucro embutida — cada cobrança corresponde a um custo real da construção.</p>
+
+      <!-- Pagamentos por fase -->
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:var(--primary);color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">🏁</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8EFC8;margin-bottom:.1rem;">Fase 1</div>
+              <div style="font-size:.9rem;font-weight:600;">Reserva e Adesão</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Sinal de Reserva (5%)</strong><span style="color:var(--slate);">Pagamento inicial para garantir a unidade</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Taxa de Adesão</strong><span style="color:var(--slate);">Taxa administrativa de entrada no grupo</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#1A4A7A;color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">👥</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8D4F5;margin-bottom:.1rem;">Fase 2</div>
+              <div style="font-size:.9rem;font-weight:600;">Formação do Grupo</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Entrada Inicial (10–20%)</strong><span style="color:var(--slate);">Parcela de entrada do empreendimento</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">1ª Parcela Desenvolvedor</strong><span style="color:var(--slate);">Pagamento ao desenvolvedor do projeto</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Taxa de Administração</strong><span style="color:var(--slate);">Custo de gestão do grupo condominial</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#5B2D8E;color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">📐</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#D7A8F5;margin-bottom:.1rem;">Fase 3</div>
+              <div style="font-size:.9rem;font-weight:600;">Pré-Construção</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Parcelas Intermediárias (Desenvolvimento)</strong><span style="color:var(--slate);">Custeiam projetos, aprovações e licenças</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Pagamento de Projetos</strong><span style="color:var(--slate);">Projetos técnicos (elétrico, hidráulico, estrutural)</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Integralização do Terreno</strong><span style="color:var(--slate);">Aquisição do terreno rateada entre os condôminos</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Reforço de Entrada — Customização 1ª Fase</strong><span style="color:var(--slate);">Personalização antes do início da obra</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Orçamento Paramétrico → Orçamento Executivo</strong><span style="color:var(--slate);">Fluxo de pagamento inicial baseado no paramétrico; ajustado quando o executivo é apresentado</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#1B5E38;color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">🏗️</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#A8EFC8;margin-bottom:.1rem;">Fase 4</div>
+              <div style="font-size:.9rem;font-weight:600;">Construção</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Parcelas Mensais de Obra</strong><span style="color:var(--slate);">Custeiam execução mês a mês — reajustadas por INCC</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Reforços Semestrais</strong><span style="color:var(--slate);">Aportes maiores em marcos específicos da construção</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Pagamento de Customização 2ª Fase</strong><span style="color:var(--slate);">Personalização de acabamentos durante a obra</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Chamadas de Capital (se necessário)</strong><span style="color:var(--slate);">Aportes extraordinários para cobrir variações de custo</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#7D4200;color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">🏁</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#FFD8A8;margin-bottom:.1rem;">Fase 5</div>
+              <div style="font-size:.9rem;font-weight:600;">Finalização e Entrega</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Parcela Final de Obra</strong><span style="color:var(--slate);">Quitação do saldo construtivo</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Fundo de Decoração — Áreas Comuns</strong><span style="color:var(--slate);">Mobiliário e acabamento das áreas coletivas</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Taxa de Cartório + Documentação</strong><span style="color:var(--slate);">Registro de matrícula, escritura e ITBI</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Habite-se + Liberação Final</strong><span style="color:var(--slate);">Aprovação da prefeitura para habitação</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Fundo de Reserva Inicial do Condomínio</strong><span style="color:var(--slate);">Constituição do fundo para manutenções futuras</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">1ª Taxa de Condomínio</strong><span style="color:var(--slate);">Início do custeio das despesas condominiais</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--border);">
+          <div style="background:#6B0D0D;color:var(--white);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.6rem;">
+            <span style="font-size:1rem;">🔧</span>
+            <div>
+              <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#FFAAAA;margin-bottom:.1rem;">Fase 6</div>
+              <div style="font-size:.9rem;font-weight:600;">Pós-Entrega</div>
+            </div>
+          </div>
+          <div style="padding:1rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem;">
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Contribuições para Garantia Quinquenal</strong><span style="color:var(--slate);">Reservas para cobertura das garantias NBR 17170</span></div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;font-size:.78rem;"><strong style="color:var(--primary);display:block;margin-bottom:.15rem;">Pagamento de Reforços Pendentes</strong><span style="color:var(--slate);">Regularização de quaisquer saldos em aberto</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="al ai" style="margin-top:1.25rem">
+        <span class="aico">💡</span>
+        <div class="atxt">
+          <h4>Por que existem tantos eventos de pagamento?</h4>
+          <p>No modelo a preço de custo, cada cobrança tem uma finalidade específica e transparente — o cliente paga conforme o custo vai sendo incorrido na obra. Não há lucro de incorporadora embutido: o que o cliente paga vai diretamente para a construção do seu imóvel. Por isso o time de atendimento deve ser capaz de explicar <strong>o que está sendo cobrado, quando e por quê</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 3 — QUEM FAZ O QUÊ -->
+    <div id="ft-departamentos" class="tp">
+      <p style="font-size:.83rem;color:var(--slate);margin-bottom:1.5rem;line-height:1.6;">Em cada fase da jornada, diferentes áreas da Diagonal estão envolvidas. Entender isso ajuda o atendimento a <strong>direcionar corretamente</strong> cada demanda do cliente.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:var(--gold);padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>📞</span><strong style="color:var(--primary);font-size:.88rem;">Relacionamento / Atendimento</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Ponto de contato central do cliente em todas as fases</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Registro de todas as interações no CV CRM</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Comunicados de marcos de obra e customizações</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Agendamento e acompanhamento de vistorias</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Encaminhamento de assistência técnica pós-entrega</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:#2980B9;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>💰</span><strong style="color:#fff;font-size:.88rem;">Financeiro / Crédito Imobiliário</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:#2980B9;font-weight:700;flex-shrink:0;">→</span> Gestão dos boletos, antecipações e negociações</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#2980B9;font-weight:700;flex-shrink:0;">→</span> Controle do fluxo de pagamentos da obra</div>
+            <div style="display:flex;gap:.5px;"><span style="color:#2980B9;font-weight:700;flex-shrink:0;">→</span> Prestação de contas do grupo condominial</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#2980B9;font-weight:700;flex-shrink:0;">→</span> Chamadas de capital e reforços extraordinários</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#2980B9;font-weight:700;flex-shrink:0;">→</span> Orientação para repasse bancário (90+ dias antes)</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:#8E44AD;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>🏗️</span><strong style="color:#fff;font-size:.88rem;">Engenharia / Obra</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Elaboração e aprovação dos projetos técnicos</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Acompanhamento do cronograma de obra</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Memorial descritivo e customizações</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Visitas técnicas e registros fotográficos</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#8E44AD;font-weight:700;flex-shrink:0;">→</span> Emissão do Habite-se junto à prefeitura</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:#27AE60;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>⚖️</span><strong style="color:#fff;font-size:.88rem;">Jurídico</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:#27AE60;font-weight:700;flex-shrink:0;">→</span> Elaboração e validação dos contratos condominiais</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#27AE60;font-weight:700;flex-shrink:0;">→</span> Análise de distrato e rescisões (enviar sempre)</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#27AE60;font-weight:700;flex-shrink:0;">→</span> Termos de confissão de dívida</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#27AE60;font-weight:700;flex-shrink:0;">→</span> Demandas com ameaça de ação judicial</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#27AE60;font-weight:700;flex-shrink:0;">→</span> Regularização documental e cartório</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:#E67E22;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>🏢</span><strong style="color:#fff;font-size:.88rem;">Comercial / Vendas</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Prospecção e formação do grupo condominial</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Apresentação e análise de viabilidade do projeto</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Reserva de unidade e assinatura de contrato</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Lançamento oficial do empreendimento</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:#E67E22;font-weight:700;flex-shrink:0;">→</span> Indicações para novos projetos (pós-entrega)</div>
+          </div>
+        </div>
+
+        <div style="background:var(--white);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;">
+          <div style="background:#1B3A2D;padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;">
+            <span>🔧</span><strong style="color:#A8EFC8;font-size:.88rem;">Assistência Técnica (Pós-Obra)</strong>
+          </div>
+          <div style="padding:.9rem 1rem;font-size:.78rem;color:var(--slate);display:flex;flex-direction:column;gap:.35rem;">
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Atendimento de chamados de garantia (NBR 17170)</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Vistorias técnicas após reclamação do condômino</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Laudo de vícios aparentes e ocultos</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Entrega do manual do proprietário com explicação</div>
+            <div style="display:flex;gap:.5rem;"><span style="color:var(--gold);font-weight:700;flex-shrink:0;">→</span> Definição de responsabilidade (garantia vs. mau uso)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="al aw" style="margin-top:1.25rem">
+        <span class="aico">⚠️</span>
+        <div class="atxt">
+          <h4>Regra de ouro do atendimento</h4>
+          <p>O time de relacionamento é o <strong>ponto de entrada de toda demanda</strong>. Nunca orientar o cliente a ligar direto para outro departamento. Registre no CV CRM, trate internamente e dê retorno ao cliente. O cliente tem um único canal: <em>você</em>.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- ═══════════════ GARANTIAS ═══════════════ -->
 <div class="sec" id="garantias">
@@ -1128,11 +1806,20 @@
 
 <script data-cfasync="false">
 const SD=[
-  {t:"Faixa 1 MCMV",d:"Renda até R$ 3.200, subsídio até R$ 55 mil, sem juros",s:"MCMV",a:"mcmv"},
-  {t:"Faixa 2 MCMV",d:"Renda até R$ 5.000, subsídio parcial, juros 4,75% a 7,66%",s:"MCMV",a:"mcmv"},
-  {t:"Faixa 3 MCMV",d:"Renda até R$ 9.600, sem subsídio, teto R$ 400 mil",s:"MCMV",a:"mcmv"},
-  {t:"Faixa 4 MCMV — Classe Média",d:"Renda até R$ 13.000, sem subsídio, teto R$ 600 mil, criada 2025",s:"MCMV",a:"mcmv"},
-  {t:"Subsídio MCMV",d:"Valor descontado do governo, não pago de volta, até R$ 55 mil faixas 1 e 2",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 1 MCMV 2026",d:"Renda até R$ 3.200/mês. Juros: 4% a.a. (N/NE cotista) a 4,75% (S/SE/CO não cotista). Subsídio até R$ 55 mil (até 95% do imóvel). Parcela a partir de R$ 80. Imóvel R$ 210k a R$ 275k conforme localidade",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 2 MCMV 2026",d:"Renda R$ 3.200,01 a R$ 5.000/mês. Juros: 4,75% a 7% a.a. conforme região e cotista. Subsídio parcial até R$ 55 mil. Imóvel R$ 210k a R$ 275k. Prazo até 360 meses",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 3 MCMV 2026",d:"Renda R$ 5.000,01 a R$ 9.600/mês. Juros ~7,66% a 8,16% a.a. Sem subsídio. Teto do imóvel subiu para R$ 400 mil (antes R$ 350 mil). Prazo até 420 meses. Pode usar FGTS",s:"MCMV",a:"mcmv"},
+  {t:"Faixa 4 MCMV — Classe Média 2026",d:"Renda R$ 9.600,01 a R$ 13.000/mês. Juros até 10% a.a. Sem subsídio. Teto do imóvel R$ 600 mil (subiu de R$ 500k). Entrada mínima 20%. Criada abr/2025, ampliada abr/2026",s:"MCMV",a:"mcmv"},
+  {t:"Cotista FGTS MCMV — taxa reduzida",d:"Cotista é quem tem conta FGTS com saldo há pelo menos 3 anos de contribuição. Direito a redução de 0,5 ponto percentual na taxa de juros do MCMV — pode representar dezenas de milhares de reais a menos no total pago",s:"MCMV",a:"mcmv"},
+  {t:"Subsídio MCMV — o que é",d:"Valor que o Governo Federal desconta do preço do imóvel. O cliente não paga de volta. Disponível nas faixas 1 e 2. Pode chegar a R$ 55 mil. Reduz diretamente o saldo financiado e as parcelas mensais",s:"MCMV",a:"mcmv"},
+  {t:"Simulador MCMV — onde simular",d:"Orientar o cliente a simular em gov.br/minhacasaminhavida ou na Caixa Econômica Federal para condições exatas de juros, subsídio e parcelas conforme renda e localidade",s:"MCMV",a:"mcmv"},
+  {t:"Escritura — o que é",d:"Documento jurídico que transfere oficialmente a propriedade do imóvel para o comprador. Lavrada em cartório de notas e registrada na matrícula do imóvel. Sem registro na matrícula, a propriedade não é juridicamente do comprador",s:"MCMV",a:"mcmv"},
+  {t:"Escritura no financiamento bancário MCMV",d:"No financiamento pela Caixa, o contrato de financiamento com alienação fiduciária já tem força de escritura e é registrado no cartório. A escritura definitiva só é emitida após a quitação total do financiamento",s:"MCMV",a:"mcmv"},
+  {t:"Quando o cliente recebe a escritura",d:"No MCMV com financiamento bancário, a escritura definitiva sai somente após a quitação total do financiamento com a Caixa. Durante o financiamento, o contrato registrado já garante os direitos do comprador",s:"MCMV",a:"mcmv"},
+  {t:"ITBI — o que é",d:"Imposto sobre Transmissão de Bens Imóveis. Cobrado pelo município na transferência do imóvel. Geralmente entre 2% e 3% do valor. Isento no Entrada Moradia CE para faixas 1 e 2",s:"MCMV",a:"mcmv"},
+  {t:"Matrícula do imóvel — o que é",d:"Documento no cartório de registro de imóveis que reúne todo o histórico do imóvel: proprietários, ônus, penhoras, hipotecas. O registro da escritura na matrícula é o que torna a propriedade oficial e pública",s:"MCMV",a:"mcmv"},
+  {t:"Alienação fiduciária — o que é",d:"No financiamento bancário, o imóvel fica em nome do banco como garantia até a quitação. Ao quitar, o banco emite o Termo de Quitação e a alienação é cancelada na matrícula — o cliente passa a ter propriedade plena",s:"MCMV",a:"mcmv"},
+  {t:"Contrato de compra e venda vs escritura",d:"Contrato de compra e venda formaliza o acordo mas não transfere a propriedade sozinho. A escritura pública (ou contrato de financiamento) registrada na matrícula é que efetua a transferência legal da propriedade",s:"MCMV",a:"mcmv"},
   {t:"Entrada Moradia Ceará",d:"R$ 20 mil do governo estadual para a entrada, isenta ITBI e registro, faixas 1 e 2",s:"Entrada Moradia CE",a:"entrada-moradia"},
   {t:"Cheque Moradia Ceará",d:"Benefício estadual para construção e reforma de moradias populares no Ceará",s:"Entrada Moradia CE",a:"entrada-moradia"},
   {t:"Requisitos Entrada Moradia CE",d:"1 ano no CE, +18 anos, 1º imóvel, renda até R$ 4.700, crédito aprovado CAIXA",s:"Entrada Moradia CE",a:"entrada-moradia"},
@@ -1193,6 +1880,34 @@ const SD=[
   {t:"Agendamento de vistoria",d:"Cliente agenda no portal, azul no CV = agendado, liberar vistoria, salvar termo na pasta",s:"Procedimentos",a:"procedimentos"},
   {t:"Visita na obra — coletiva",d:"Visitas individuais não são realizadas, apenas coletivas no momento oportuno",s:"Procedimentos",a:"procedimentos"},
   {t:"Assistência técnica pós-entrega",d:"Atualização obra, qualidade venda, cessão, avaliar individualmente cada caso",s:"Procedimentos",a:"procedimentos"},
+  /* ── FLUXO DIAGONAL ── */
+  {t:"Modelo a preço de custo",d:"Cliente paga o custo real da obra, sem margem de lucro de incorporadora embutida. Diagonal recebe pela taxa administrativa de gestão do processo",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Taxa administrativa Diagonal",d:"Como a Diagonal é remunerada: cobra taxa administrativa pela gestão, coordenação e garantia de todo o processo construtivo — não lucra sobre o imóvel em si",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Outorga — o que é",d:"Taxa paga ao poder público pelo direito de construir acima do coeficiente básico do terreno. É um custo real da obra rateado entre os condôminos",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Terreno — custo condominial",d:"O terreno é adquirido pelo grupo e integralizado (rateado) entre todos os condôminos. Não há incorporadora revendendo o terreno com lucro",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Construção — custo condominial",d:"Custo direto da execução da obra: mão de obra, materiais, fornecedores. Pago pelo grupo conforme cronograma. Reajustado por INCC mensalmente",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Ambientação — fundo de decoração",d:"Custo de mobiliário, decoração e acabamento das áreas comuns do condomínio (piscina, salão, portaria, academia etc). Rateado entre os condôminos",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Personalização de unidade",d:"Cada condômino pode escolher acabamentos, revestimentos e configurações da sua unidade dentro das opções definidas pelo grupo. Ex: pisos, louças, pintura",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Shell — personalização",d:"Opção de entrega da unidade em estado bruto (shell), para o condômino executar o acabamento por conta própria conforme aprovação do grupo",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Personalização — decisão coletiva",d:"Todas as personalizações (piscinas, áreas de lazer, padrão de acabamento) são definidas em assembleia pelo grupo. Não é decisão individual unilateral",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Síndico eleito — condomínio Diagonal",d:"O grupo elege um síndico no início do empreendimento para representar os condôminos junto à Diagonal e fiscalizar o andamento da obra",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Comissão de representantes",d:"Grupo de condôminos eleitos para acompanhar e deliberar sobre o empreendimento. Mandato de 1 ano, renovável por votação em assembleia",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Fiscal de obra — engenheiro independente",d:"Engenheiro ou empresa contratada pelo grupo condominial (não pela Diagonal) para fiscalizar a construção de forma independente e emitir pareceres técnicos à comissão",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Relatório de acompanhamento de obra",d:"Documento periódico emitido pela Diagonal com evolução física e financeira da obra. O fiscal independente avalia o relatório e emite parecer à comissão de representantes",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Parecer técnico do fiscal",d:"Avaliação emitida pelo fiscal independente (engenheiro contratado pelo grupo) após análise do relatório de obra e visita ao canteiro. Encaminhado à comissão de representantes",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Assembleia condominial Diagonal",d:"Reunião do grupo para deliberar sobre personalizações, eleição de síndico e comissão, aprovação de contas e decisões coletivas do empreendimento",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Integralização do terreno",d:"Pagamento da fração do terreno por cada condômino. Ocorre na fase de pré-construção. O terreno é do grupo, não da Diagonal",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Chamada de capital",d:"Aporte extraordinário solicitado ao grupo quando há variação de custo não prevista na obra. Aprovada em assembleia com apresentação da justificativa técnica",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Diagonal — papel na obra",d:"A Diagonal atua como gestora e construtora do processo. Recebe taxa administrativa, é fiscalizada pelo engenheiro independente contratado pelo grupo e presta contas à comissão",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"AGE — Assembleia Geral Extraordinária",d:"Reunião convocada quando decisões relevantes exigem participação de todo o grupo condominial. Pautas: novos valores de obra, personalizações, eleição de comissão, chamadas de capital, questões jurídicas",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"AGE — convocação e votação",d:"Convocada pela Diagonal e/ou comissão com pauta definida. Todos os condôminos têm direito a voto. Decisões aprovadas em AGE são vinculantes para todo o grupo",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Deliberação da comissão — desconto isenção negociação",d:"Após formação do grupo, concessão de descontos, isenção de juros ou multa, reparcelamentos e adaptações precisam de aprovação da comissão de representantes — a Diagonal não decide sozinha",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Comissão — o que precisa de aprovação",d:"Descontos, isenção de juros e multa, negociações, reparcelamentos, adaptações no projeto, personalizações fora do padrão e exceções contratuais individuais precisam de aprovação da comissão",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Como orientar cliente que pede desconto ou isenção",d:"Explicar que a Diagonal não decide sozinha — precisa de aprovação da comissão de representantes que representa todos os condôminos. Registrar no CRM e retornar com resultado",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Orçamento Paramétrico",d:"Elaborado no início do projeto para avaliar viabilidade econômica. Usa estimativas por m² com base em projetos similares. Base para o fluxo de pagamentos inicial. Menos preciso — sujeito a revisão pelo executivo",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Orçamento Executivo",d:"Elaborado após aprovação dos projetos técnicos completos. Detalhado com composição de custos por item, cotações de fornecedores e cronograma físico-financeiro. Mais próximo da realidade. Pode ajustar o fluxo de pagamentos",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Variação de valores — paramétrico para executivo",d:"O valor inicial se baseia no orçamento paramétrico (estimativa). Com o executivo pronto, os valores podem ser ajustados. Mudança apresentada em AGE com justificativa técnica e avaliada pelo fiscal independente",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
+  {t:"Cliente questiona aumento de valor da obra",d:"Explicar que o orçamento paramétrico é estimativa de viabilidade. O executivo detalha os custos reais e pode gerar ajustes. Apresentado em AGE com documentação e avaliado pelo fiscal independente do grupo",s:"Fluxo Diagonal",a:"fluxo-diagonal"},
 ];
 
 function hl(t,q){if(!q)return t;const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return t.replace(re,'<mark>$1</mark>');}
@@ -1211,6 +1926,9 @@ document.getElementById('so').addEventListener('click',function(e){if(e.target==
 function showTab(id){document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');event.currentTarget.classList.add('active');}
 function tog(h){const b=h.nextElementSibling;const i=h.querySelector('.ti');const o=b.classList.contains('open');document.querySelectorAll('.mb').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.ti').forEach(x=>x.classList.remove('open'));if(!o){b.classList.add('open');i.classList.add('open');}}
 document.querySelectorAll('nav a').forEach(a=>{a.addEventListener('click',()=>{document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');});});
+function showFluxoTab(id,btn){const tabs=document.querySelectorAll('#fluxo-tabs .tp');const btns=document.querySelectorAll('#fluxo-tabs .tbtn');tabs.forEach(p=>p.classList.remove('active'));btns.forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
 </script>
 </body>
 </html>
+
+
